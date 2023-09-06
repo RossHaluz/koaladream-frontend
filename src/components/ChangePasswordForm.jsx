@@ -1,18 +1,21 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import {  Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import {BsEyeSlash, BsEye} from 'react-icons/bs';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { changePassword } from 'redux/auth/operetions';
 
 const validationSchema = Yup.object({ 
   oldPassword: Yup.string('Type your old password').required('Old password is required'),
   newPassword: Yup.string('Type your new password').required('New password is required'),
-  passwordConfirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
+  passwordConfirmation: Yup.string().oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
 })
 
 const ChangePasswordForm = () => {
 const [isShowOldPass, setIsShowOldPass] = useState(false);
 const [isShowNewPass, setIsShowNewPass] = useState(false);
 const [isShowConfirmPass, setIsShowConfirmPass] = useState(false);
+const dispatch = useDispatch();
 
   const initialValues = { 
     oldPassword: '',
@@ -21,7 +24,7 @@ const [isShowConfirmPass, setIsShowConfirmPass] = useState(false);
   }
 
   const onSubmit = (value, {resetForm}) => {
-    console.log(value);
+    dispatch(changePassword(value));
     resetForm()
   }
 

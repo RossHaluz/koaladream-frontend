@@ -6,7 +6,6 @@ import { selectUser } from 'redux/auth/selectors';
 const PersonalData = () => {
 const {userName, email, phone} = useSelector(selectUser);
 const dispatch = useDispatch();
-
  
 const initialValues = {
     userName: userName,

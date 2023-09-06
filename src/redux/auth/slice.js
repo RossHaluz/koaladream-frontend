@@ -1,4 +1,5 @@
-import { loginUser, registerUser, logoutUser, currentUser, updateUser } from "./operetions";
+import { toast } from "react-toastify";
+import { loginUser, registerUser, logoutUser, currentUser, updateUser, changePassword } from "./operetions";
 const { createSlice } = require("@reduxjs/toolkit");
 
 
@@ -86,7 +87,22 @@ const authSlice = createSlice({
         [updateUser.fulfilled](state, action){ 
             state.isLoading = false;
             state.user = action.payload;
+            toast("User data successfully update", {
+                position: "bottom-right",
+                autoClose: 5000,
+                });
         },
+        [changePassword.pending](state, __){
+            state.isLoading = true;
+        },
+        [changePassword.fulfilled](state, action){ 
+            state.isLoading = false;
+            toast(`${action.payload.message}`, {
+                position: "bottom-right",
+                autoClose: 5000,
+                });
+
+        }
     }
 })
 

@@ -1,5 +1,5 @@
 import AppBar from "components/AppBar"
-import Home from "components/Home"
+import Home from "components/Home";
 
 const HomePage = () => {
   return <>

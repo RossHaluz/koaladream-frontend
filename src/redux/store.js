@@ -11,6 +11,7 @@ import {
     REGISTER,
   } from 'redux-persist';
   import storage from 'redux-persist/lib/storage'
+import { categoriesReducer } from "./categories/slice";
 
   const persistConfig = {
     key: 'token',
@@ -22,7 +23,8 @@ import {
 
 export const store = configureStore({
     reducer: {
-        auth: persistedReducer
+        auth: persistedReducer,
+        category: categoriesReducer
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

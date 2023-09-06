@@ -64,3 +64,13 @@ export const updateUser = createAsyncThunk('api/update', async(params, {rejectWi
         return rejectWithValue(error.message);
     }
 })
+
+
+export const changePassword = createAsyncThunk('api/changePassword', async(params, {rejectWithValue}) => {
+    try {
+        const {data} = await axios.patch('/api/user/change-password', params);
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.message);
+    }
+})
