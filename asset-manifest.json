@@ -1,13 +1,27 @@
 {
   "files": {
-    "main.css": "/koaladream-frontend/static/css/main.7acaea2f.css",
-    "main.js": "/koaladream-frontend/static/js/main.07d3183d.js",
+    "main.css": "/koaladream-frontend/static/css/main.71d3e085.css",
+    "main.js": "/koaladream-frontend/static/js/main.cfe1af04.js",
+    "static/js/751.011782fa.chunk.js": "/koaladream-frontend/static/js/751.011782fa.chunk.js",
+    "static/media/hero-banner-desctop@2x.jpg": "/koaladream-frontend/static/media/hero-banner-desctop@2x.8037ad2e6efe7e8f93f7.jpg",
+    "static/media/hero-banner-desctop@1x.jpg": "/koaladream-frontend/static/media/hero-banner-desctop@1x.a01f71e39550a5c1af31.jpg",
+    "static/media/hero-banner-mobile@2x.jpg": "/koaladream-frontend/static/media/hero-banner-mobile@2x.49033fc12265f6b30f22.jpg",
+    "static/media/hero-banner-mobile@1x.jpg": "/koaladream-frontend/static/media/hero-banner-mobile@1x.ada530280e856ca4ed33.jpg",
+    "static/media/order-item@2x.png": "/koaladream-frontend/static/media/order-item@2x.8f41eb265c80595c8ce0.png",
+    "static/media/logo-desctop@2x.png": "/koaladream-frontend/static/media/logo-desctop@2x.0ccd4a0996317fe1d4a2.png",
+    "static/media/order-item@1x.png": "/koaladream-frontend/static/media/order-item@1x.69dd29d8a1e5a521f843.png",
+    "static/media/icons.svg": "/koaladream-frontend/static/media/icons.67b025cd2ad2137c5304b89845b18cee.svg",
+    "static/media/slick.svg": "/koaladream-frontend/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/koaladream-frontend/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/koaladream-frontend/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "index.html": "/koaladream-frontend/index.html",
-    "main.7acaea2f.css.map": "/koaladream-frontend/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/koaladream-frontend/static/js/main.07d3183d.js.map"
+    "static/media/slick.woff": "/koaladream-frontend/static/media/slick.295183786cd8a1389865.woff",
+    "main.71d3e085.css.map": "/koaladream-frontend/static/css/main.71d3e085.css.map",
+    "main.cfe1af04.js.map": "/koaladream-frontend/static/js/main.cfe1af04.js.map",
+    "751.011782fa.chunk.js.map": "/koaladream-frontend/static/js/751.011782fa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/css/main.71d3e085.css",
+    "static/js/main.cfe1af04.js"
   ]
 }
