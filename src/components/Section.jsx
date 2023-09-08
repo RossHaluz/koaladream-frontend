@@ -2,7 +2,7 @@ import React from 'react'
 
 const Section = ({title, children}) => {
   return <div className='my-[30px]'>
-    <h2 className='text-[32px] font-bold tracking-[0.24px] font-secondery mb-[30px] container'>{title}</h2>
+    <h2 className='text-[24px] w-[285px] ml-[0px] tb:w-full tb:text-[32px] font-bold tracking-[0.24px] font-secondery mb-[30px] container'>{title}</h2>
     {children}
   </div>
 }
