@@ -12,6 +12,8 @@ import {
   } from 'redux-persist';
   import storage from 'redux-persist/lib/storage'
 import { categoriesReducer } from "./categories/slice";
+import { itemReducer } from "./items/slice";
+import { blogReducer } from "./blog/slice";
 
   const persistConfig = {
     key: 'token',
@@ -24,7 +26,9 @@ import { categoriesReducer } from "./categories/slice";
 export const store = configureStore({
     reducer: {
         auth: persistedReducer,
-        category: categoriesReducer
+        category: categoriesReducer,
+        item: itemReducer,
+        blog: blogReducer
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

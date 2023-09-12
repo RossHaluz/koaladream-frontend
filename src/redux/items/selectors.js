@@ -1,0 +1,1 @@
+export const selectHitsItems = state => state.item.hitsItems;

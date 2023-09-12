@@ -14,6 +14,8 @@ secondery: ['Mulish']
 
       'tb': '768px',
       
+      'bg': '1280px',
+
       'lg': '1440px'
     },
     container: {
@@ -22,10 +24,13 @@ secondery: ['Mulish']
         xs: "20px",
         sm: "20px",
         tb: "20px",
+        bg: '165px',
         lg: '165px'
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
 
