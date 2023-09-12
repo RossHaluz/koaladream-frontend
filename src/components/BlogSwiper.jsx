@@ -61,7 +61,7 @@ const BlogSwiper = ({posts}) => {
   }}
   breakpoints={{
     320: {
-      spaceBetween: 5,
+      spaceBetween: 10,
       centeredSlides: true,
     },
     1280: {
