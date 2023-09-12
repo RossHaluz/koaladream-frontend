@@ -1,27 +1,29 @@
 {
   "files": {
-    "main.css": "/koaladream-frontend/static/css/main.c7cc479d.css",
-    "main.js": "/koaladream-frontend/static/js/main.bb1d8ef7.js",
+    "main.css": "/koaladream-frontend/static/css/main.33aeee3e.css",
+    "main.js": "/koaladream-frontend/static/js/main.66750dda.js",
     "static/js/751.011782fa.chunk.js": "/koaladream-frontend/static/js/751.011782fa.chunk.js",
     "static/media/hero-banner-desctop@2x.jpg": "/koaladream-frontend/static/media/hero-banner-desctop@2x.8037ad2e6efe7e8f93f7.jpg",
     "static/media/hero-banner-desctop@1x.jpg": "/koaladream-frontend/static/media/hero-banner-desctop@1x.a01f71e39550a5c1af31.jpg",
     "static/media/hero-banner-mobile@2x.jpg": "/koaladream-frontend/static/media/hero-banner-mobile@2x.49033fc12265f6b30f22.jpg",
+    "static/media/discount@2x.jpg": "/koaladream-frontend/static/media/discount@2x.353dc42a4d3d53c2fd9e.jpg",
+    "static/media/discount@1X.jpg": "/koaladream-frontend/static/media/discount@1X.6f342bb303f4626a593d.jpg",
     "static/media/hero-banner-mobile@1x.jpg": "/koaladream-frontend/static/media/hero-banner-mobile@1x.ada530280e856ca4ed33.jpg",
     "static/media/order-item@2x.png": "/koaladream-frontend/static/media/order-item@2x.8f41eb265c80595c8ce0.png",
     "static/media/logo-desctop@2x.png": "/koaladream-frontend/static/media/logo-desctop@2x.0ccd4a0996317fe1d4a2.png",
     "static/media/order-item@1x.png": "/koaladream-frontend/static/media/order-item@1x.69dd29d8a1e5a521f843.png",
-    "static/media/icons.svg": "/koaladream-frontend/static/media/icons.67b025cd2ad2137c5304b89845b18cee.svg",
+    "static/media/icons.svg": "/koaladream-frontend/static/media/icons.fd334fbd1b46c8adc53ea07f92a99828.svg",
     "static/media/slick.svg": "/koaladream-frontend/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/koaladream-frontend/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/koaladream-frontend/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "index.html": "/koaladream-frontend/index.html",
     "static/media/slick.woff": "/koaladream-frontend/static/media/slick.295183786cd8a1389865.woff",
-    "main.c7cc479d.css.map": "/koaladream-frontend/static/css/main.c7cc479d.css.map",
-    "main.bb1d8ef7.js.map": "/koaladream-frontend/static/js/main.bb1d8ef7.js.map",
+    "main.33aeee3e.css.map": "/koaladream-frontend/static/css/main.33aeee3e.css.map",
+    "main.66750dda.js.map": "/koaladream-frontend/static/js/main.66750dda.js.map",
     "751.011782fa.chunk.js.map": "/koaladream-frontend/static/js/751.011782fa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c7cc479d.css",
-    "static/js/main.bb1d8ef7.js"
+    "static/css/main.33aeee3e.css",
+    "static/js/main.66750dda.js"
   ]
 }
