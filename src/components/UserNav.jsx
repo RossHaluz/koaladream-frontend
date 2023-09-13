@@ -14,9 +14,9 @@ const UserNav = () => {
       <Modal stylesBtn={"xs:hidden lg:block text-[18px] text-[#7FAA84] tracking-[0.36px]"} data={<>UA</>}>
       </Modal>
 
-{isLogin ? <Link to='/acount'><svg className="w-[24px] h-[24px]" stroke='#7FAA84'>
+{isLogin ? <Link to='/acount'><svg className="w-[24px] h-[24px]" stroke='#7FAA84' fill='none'>
           <use href={`${icons}#icon-account`}></use>
-        </svg></Link> : <Modal stylesBtn={"xs:hidden lg:block"} data={<svg className="w-[24px] h-[24px]" stroke='#484848' >
+        </svg></Link> : <Modal stylesBtn={"xs:hidden lg:block"} data={<svg className="w-[24px] h-[24px]" stroke='#484848' fill='none' >
           <use href={`${icons}#icon-account`}></use>
         </svg>}>
      <LoginForm />

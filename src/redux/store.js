@@ -14,6 +14,7 @@ import {
 import { categoriesReducer } from "./categories/slice";
 import { itemReducer } from "./items/slice";
 import { blogReducer } from "./blog/slice";
+import { mobileMenuReducer } from "./mobileMenu/slice";
 
   const persistConfig = {
     key: 'token',
@@ -28,7 +29,8 @@ export const store = configureStore({
         auth: persistedReducer,
         category: categoriesReducer,
         item: itemReducer,
-        blog: blogReducer
+        blog: blogReducer,
+        menu: mobileMenuReducer
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

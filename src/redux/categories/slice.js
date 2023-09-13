@@ -4,12 +4,20 @@ import { getCategories } from "./operetions";
 const initialState  = {
     categories: [],
     isLoading: false,
+    isOpenCatalog: false,
 }
 
 const categorySlice = createSlice({
     name: 'category',
     initialState: {initialState},
-    reducers: {},
+    reducers: {
+        isOpenCatalog: (state, action) => {
+            state.isOpenCatalog = action.payload;
+        },
+        isCloseCatalog: (state, action) => {
+            state.isOpenCatalog = action.payload;
+        }
+    },
     extraReducers: {
         [getCategories.pending](state, __){
             state.isLoading = true;
@@ -21,4 +29,5 @@ const categorySlice = createSlice({
     }
 })
 
+export const {isOpenCatalog, isCloseCatalog} = categorySlice.actions;
 export const categoriesReducer = categorySlice.reducer;

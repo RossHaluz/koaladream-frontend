@@ -2,15 +2,26 @@ import Logo from "./Logo";
 import {AiOutlineClose} from 'react-icons/ai';
 import icons from './img/icons/icons.svg';
 import { Link } from "react-router-dom";
+import CategoriesMobile from "./CategoriesMobile";
+import { useDispatch, useSelector } from "react-redux";
+import { openMenu } from "redux/mobileMenu/slice";
+import { selectIsOpenCatalog } from "redux/categories/selectors";
+import LoginFormMobile from "./LoginFormMobile";
+import { useState } from "react";
 
-const MenuMobile = ({setIsOpen}) => {
-  return <div className='fixed left-0 top-0 z-10 overflow-y-auto w-full h-full bg-[#F5FAF6] container pb-[98px]'>
-    <div className="flex justify-center" onClick={() => setIsOpen(false)}>
+const MenuMobile = () => {
+const dispatch = useDispatch();
+const openCatalog = useSelector(selectIsOpenCatalog);
+const [isOpenLoginPage, setIsOpenLoginPage] = useState(false);
+ 
+  return <>
+  <div className='fixed left-0 top-0 z-10 overflow-y-auto w-full h-full bg-[#F5FAF6] container pb-[98px]'>
+    <div className="flex justify-center" onClick={() => dispatch(openMenu(false))}>
     <Logo/>
     </div>
     <div className="flex justify-between items-center mt-[12px] mb-[17px]">
         <h3 className="text-[16px] font-semibold">Меню</h3>
-        <AiOutlineClose className="w-[24px] h-[24px]" onClick={() => setIsOpen(false)}/>
+        <AiOutlineClose className="w-[24px] h-[24px]" onClick={() => dispatch(openMenu(false))}/>
     </div>
     <div className="flex flex-col gap-[15px]">
     <form>
@@ -26,7 +37,7 @@ const MenuMobile = ({setIsOpen}) => {
 
     <button type="button" className="px-[15px] py-[13px] w-full bg-[#EAF2EB] rounded-[5px]">
         <div className="flex justify-between items-center">
-            <div className="flex items-center gap-[8px]">
+            <div className="flex items-center gap-[8px]" >
                 <svg className="w-[24px] h-[24px]" fill="none" stroke="#484848">
                     <use href={`${icons}#icon-catalog`}></use>
                 </svg>
@@ -39,7 +50,7 @@ const MenuMobile = ({setIsOpen}) => {
     </button>
 
     <div className="flex items-center gap-[13px]">
-        <button type="button" className="py-[13px] px-[15px] bg-[#EAF2EB] rounded-[5px] min-w-[204px] flex items-center gap-[10px] text-[16px]"> 
+        <button type="button" className="py-[13px] px-[15px] bg-[#EAF2EB] rounded-[5px] min-w-[204px] flex items-center gap-[10px] text-[16px]" onClick={() => setIsOpenLoginPage(true)}> 
         <svg className="w-[24px] h-[24px]" stroke="#484848" fill="none">
             <use href={`${icons}#icon-account`}></use>
         </svg>
@@ -81,6 +92,9 @@ const MenuMobile = ({setIsOpen}) => {
 
     </div>
   </div>
+  {isOpenLoginPage &&  <LoginFormMobile setIsOpenLoginPage={setIsOpenLoginPage}/> }
+  {openCatalog &&  <CategoriesMobile />}
+  </>
 }
 
 export default MenuMobile
