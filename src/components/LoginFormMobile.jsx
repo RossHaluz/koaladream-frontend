@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { openMenu } from 'redux/mobileMenu/slice';
 import ForgotPasswordFormMobile from './ForgotPasswordFormMobile';
+import RegisterFormMobile from './RegisterFormMobile';
 
 const validationSchema = Yup.object({
     email: Yup.string('Type your email')
@@ -25,7 +26,8 @@ const LoginFormMobile = ({setIsOpenLoginPage}) => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
   const [checked, setChecked] = useState(false);
-  const [isOpenForgotPass, setIsOpenForgotPass] = useState(false)
+  const [isOpenForgotPass, setIsOpenForgotPass] = useState(false);
+  const [isOpenRegisterPage, setIsOpenRegisterPage] = useState(false);
 
 
   const initialValues = {
@@ -98,11 +100,12 @@ const LoginFormMobile = ({setIsOpenLoginPage}) => {
 
         <div className='flex items-center justify-between'>
           <button type="submit" className='py-[11.5px] px-[52px] bg-[#7FAA84] rounded-[5px] font-semibold tracking-[0.32px] text-[#fff]'>Увійти</button>
-    <button type='button' className='font-medium leading-[24px] border-b border-solid border-[#484848]'>Зареєструватись</button> 
+    <button type='button' className='font-medium leading-[24px] border-b border-solid border-[#484848]' onClick={() => setIsOpenRegisterPage(true)}>Зареєструватись</button> 
         </div>
       </Form>
     </Formik>
     </div>
+    {isOpenRegisterPage && <RegisterFormMobile setIsOpenLoginPage={setIsOpenLoginPage} setIsOpenRegisterPage={setIsOpenRegisterPage}/>}
     {isOpenForgotPass && <ForgotPasswordFormMobile setIsOpenLoginPage={setIsOpenLoginPage}/>}
   </>
 };
