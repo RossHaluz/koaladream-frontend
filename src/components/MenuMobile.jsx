@@ -8,11 +8,14 @@ import { openMenu } from "redux/mobileMenu/slice";
 import { selectIsOpenCatalog } from "redux/categories/selectors";
 import LoginFormMobile from "./LoginFormMobile";
 import { useState } from "react";
+import { selectIsLoging } from "redux/auth/selectors";
+import { isOpenCatalog } from "redux/categories/slice";
 
 const MenuMobile = () => {
 const dispatch = useDispatch();
 const openCatalog = useSelector(selectIsOpenCatalog);
 const [isOpenLoginPage, setIsOpenLoginPage] = useState(false);
+const isLogin = useSelector(selectIsLoging);
  
   return <>
   <div className='fixed left-0 top-0 z-10 overflow-y-auto w-full h-full bg-[#F5FAF6] container pb-[98px]'>
@@ -35,7 +38,7 @@ const [isOpenLoginPage, setIsOpenLoginPage] = useState(false);
         </div>
     </form>
 
-    <button type="button" className="px-[15px] py-[13px] w-full bg-[#EAF2EB] rounded-[5px]">
+    <button type="button" className="px-[15px] py-[13px] w-full bg-[#EAF2EB] rounded-[5px]" onClick={() => dispatch(isOpenCatalog(true))}>
         <div className="flex justify-between items-center">
             <div className="flex items-center gap-[8px]" >
                 <svg className="w-[24px] h-[24px]" fill="none" stroke="#484848">
@@ -49,13 +52,18 @@ const [isOpenLoginPage, setIsOpenLoginPage] = useState(false);
         </div>
     </button>
 
-    <div className="flex items-center gap-[13px]">
-        <button type="button" className="py-[13px] px-[15px] bg-[#EAF2EB] rounded-[5px] min-w-[204px] flex items-center gap-[10px] text-[16px]" onClick={() => setIsOpenLoginPage(true)}> 
+    <div className="grid grid-cols-3  gap-[13px]">
+        {isLogin ?  <Link to='/acount' className="py-[13px] first-of-type:col-span-2 px-[15px] bg-[#EAF2EB] rounded-[5px] flex items-center gap-[10px] text-[16px]" onClick={() => dispatch(openMenu(false))}> 
+        <svg className="w-[24px] h-[24px]" stroke="#484848" fill="none">
+            <use href={`${icons}#icon-account`}></use>
+        </svg>
+        Перейти в кабінет
+        </Link> :  <button type="button" className="py-[13px] px-[15px] col-span-2 bg-[#EAF2EB] rounded-[5px] flex items-center gap-[10px] text-[16px]" onClick={() => setIsOpenLoginPage(true)}> 
         <svg className="w-[24px] h-[24px]" stroke="#484848" fill="none">
             <use href={`${icons}#icon-account`}></use>
         </svg>
         Вхід для клієнтів
-        </button>
+        </button>}
         <button type="button" className="w-full py-[13px] px-[20px] rounded-[5px] bg-[#EAF2EB] text-[18px] tracking-[0.36px] font-mediume flex items-center justify-between">
             UA
             <svg className="w-[24px] h-[24px]" fill="none" stroke="#7FAA84">

@@ -49,7 +49,7 @@ const LoginFormMobile = ({setIsOpenLoginPage}) => {
   }
 
   return <>
-  <div className="fixed left-0 top-0 z-20 w-full h-full bg-[#F5FAF6] container">
+  <div className="fixed left-0 top-0 z-20 overflow-y-auto w-full h-full bg-[#F5FAF6] container">
       <div className="flex justify-center mb-[10px]" onClick={() => closeMobileMenu()}>
         <Logo />
       </div>
