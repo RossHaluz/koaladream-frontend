@@ -28,8 +28,8 @@ const dispatch = useDispatch();
 
     <ul className="flex flex-col gap-[15px]">
         {categories?.map(({title, _id: id}) => {
-            return <li key={id} className="px-[15px] py-[13px] bg-[#EAF2EB] rounded-[5px] w-full">
-                <Link to='/' className="flex items-center justify-between" onClick={() => dispatch(openMenu(false))}>
+            return <li key={id} className="px-[15px] py-[13px] bg-[#EAF2EB] rounded-[5px] w-full" onClick={() => {dispatch(isOpenCatalog(false)); dispatch(openMenu(false))}}>
+                <Link to={`/${title}`} className="flex items-center justify-between" onClick={() => dispatch(openMenu(false))}>
                 {title}
                 <svg className="w-[24px] h-[24px]" stroke="#7FAA84">
                     <use href={`${icons}#icon-arrow-right`}></use>
