@@ -19,7 +19,8 @@ const optionsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [createOption.fulfilled](state, action) {
-      state.options = action.payload;
+      console.log(action.payload);
+      state.options.push(action.payload);
     },
     [getOptions.fulfilled](state, action) {
       state.options = action.payload;
@@ -31,13 +32,13 @@ const optionsSlice = createSlice({
     },
     [getOption.fulfilled](state, action) {
       state.option = action.payload.option;
-      state.options = action.payload.options;
+      // state.options = action.payload.options;
     },
     [updateOption.fulfilled](state, action) {
       const findIndex = state.options.findIndex(
         item => item._id === action.payload._id
       );
-      state.option[findIndex] = action.payload;
+      state.options[findIndex] = action.payload;
       toast('Success update');
     },
   },

@@ -17,7 +17,7 @@ useEffect(() => {
 }, [dispatch])
 
   return <div className="flex flex-col gap-[20px] xs:hidden lg:flex">
-  {filters?.map(({filterValue, name}) => {
+  {filters.length > 0 && filters?.map(({filterValue, name}) => {
     return <div key={name} className="bg-[#EAF2EB] p-[15px] rounded-[5px] w-[235px]">
       <h3 className="mb-[15px] text-[16px] font-bold tracking-[ 0.32px] leading-[24px]">{name}</h3>
       <ul className="flex flex-col gap-[15px]">

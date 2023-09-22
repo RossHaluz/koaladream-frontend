@@ -58,7 +58,7 @@ export const updateOption = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     const { optionId, value } = params;
     try {
-      const { data } = await axios.post(
+      const { data } = await axios.put(
         `/api/option/update-option/${optionId}`,
         value
       );

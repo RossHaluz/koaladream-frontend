@@ -38,7 +38,7 @@ const AdminOptions = () => {
                 key={id}
                 className="border-b border-solid border-[#343a40] flex items-center justify-between"
               >
-                <h3 className="text-[16px] text-[#343a40] tracking-[0.26px] leading-[44px]">
+                <h3 className="text-[18px] text-[#343a40] tracking-[0.26px] leading-[44px]">
                   {idx + 1}. {name}
                 </h3>
                 <div className="flex items-center gap-[15px]">

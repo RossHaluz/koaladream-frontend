@@ -35,8 +35,8 @@ const CategoryItemsList = ({ category, items, setCurrentPage, getPage }) => {
         </button>
       </div>
       <div className="flex gap-[41px]">
-        <Filter />
-        {items ? (
+        {/* <Filter /> */}
+        {items.length > 0 ? (
           <ul className="grid grid-cols-1 tb:grid-cols-3 w-full gap-[20px] mb-[20px]">
             {items?.map(
               ({

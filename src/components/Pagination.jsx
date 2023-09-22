@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectTotalPages } from 'redux/items/selectors';
 import { changePage } from 'redux/items/slice';
 import icons from './img/icons/icons.svg';
-import { useEffect } from 'react';
 
 const Pagination = ({ setCurrentPage, getPage }) => {
   const totalPages = useSelector(selectTotalPages);

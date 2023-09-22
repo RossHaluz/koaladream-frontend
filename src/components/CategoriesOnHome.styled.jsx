@@ -13,9 +13,9 @@ export const CategoryItem = styled.li`
       only screen and (-o-min-device-pixel-ratio: 2/1),
       only screen and (min-resolution: 192dpi),
       only screen and (min-resolution: 2dppx) {
-        background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.img});
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.image});
     }
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.img});
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.image});
   }
   @media screen and (min-width: 1440px) {
     background-size: cover;
@@ -25,8 +25,8 @@ export const CategoryItem = styled.li`
       only screen and (-o-min-device-pixel-ratio: 2/1),
       only screen and (min-resolution: 192dpi),
       only screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.img});
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.image});
     }
-    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.img});
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 46.62%, rgba(255, 255, 255, 0.07) 100%), url(${props => props?.image});
   }
 `
