@@ -5,7 +5,7 @@ const HitsItemsListItem = ({images, oldPrice, price, status, article, title}) =>
 
   return <li className='w-full rounded-[5px] border border-solid border-[#48484833]'>
     <Link>
-   <img src={images[0]} alt="Img item" className='w-full h-[253px]'/>
+   <img src={images} alt="Img item" className='w-full h-[253px]'/>
    </Link>
    <div className='px-[15px] pt-[20px] pb-[15px]'>
    <Link> <h2 className='mb-[15px] text-[16px] font-semibold tracking-[0.64px]'>{title}</h2></Link>

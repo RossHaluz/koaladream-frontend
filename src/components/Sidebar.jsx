@@ -9,7 +9,7 @@ const activePage = {
 
 const Sidebar = () => {
   return (
-    <div className="min-w-[320px] h-screen bg-[#343a40] p-[15px]">
+    <div className="min-w-[320px] h-screen bg-[#343a40] p-[15px] fixed left-0 top-0">
       <NavLink
         to="/admin/dashboard"
         className="text-center text-[24px] text-[#fff]"

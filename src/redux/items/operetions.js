@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://localhost:8001';
 
 export const getHitsItems = createAsyncThunk(
   'api/getHitsItems',
@@ -56,3 +56,40 @@ export const getItemDetails = createAsyncThunk(
     }
   }
 );
+
+export const addItem = createAsyncThunk('api/addItem', async(params, {rejectWithValue}) => {
+  try {
+    const {data} = await axios.post('/api/item/add-item', params);
+    return data;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+})
+
+export const getAllItems = createAsyncThunk('api/createAsyncThunk', async(__, {rejectWithValue}) => {
+  try {
+    const {data} = await axios.get('/api/item/all-items');
+    return data;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+})
+
+export const updateItem = createAsyncThunk('api/updateItem', async(params, {rejectWithValue}) => {
+  const {itemId, data: value} = params;
+  try {
+    const {data} = await axios.post(`/api/item/update-item/${itemId}`, value);
+    return data;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+})
+
+export const deleteItem = createAsyncThunk('api/deleteItem', async(itemId, {rejectWithValue}) => {
+  try {
+    const {data} = await axios.delete(`/api/item/delete-item/${itemId}`);
+    return data;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+})

@@ -20,6 +20,7 @@ const AdminAddFilterForm = () => {
   };
 
   const onSubmit = (value, { resetForm }) => {
+    console.log(value);
     dispatch(addFilter(value));
     navigate('/admin/filter');
     resetForm();

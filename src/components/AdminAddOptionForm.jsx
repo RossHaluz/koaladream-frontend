@@ -20,6 +20,7 @@ const AdminAddOptionForm = () => {
   };
 
   const onSubmit = (value, { resetForm }) => {
+    console.log(value);
     dispatch(createOption(value));
     navigate('/admin/options');
     resetForm();

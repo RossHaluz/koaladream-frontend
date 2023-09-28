@@ -9,10 +9,12 @@ const LoyautAdmin = () => {
     <div className="flex gap-[40px]">
       <Sidebar />
 
+<div className='ml-[320px] w-full h-screen'>
       <Suspense fallback={'Loading...'}>
         <Outlet />
         <ToastContainer position="bottom-right" autoClose={5000} />
       </Suspense>
+      </div>
     </div>
   );
 };

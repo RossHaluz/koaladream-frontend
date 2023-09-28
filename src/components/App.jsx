@@ -26,6 +26,7 @@ const AdminFilterUpdatePage = lazy(() => import('../pages/AdminFilterUpdatePage'
 const AdminAddCategoryPage = lazy(() => import('../pages/AdminAddCategoryPage'));
 const AdminCategoryUpdatePage = lazy(() => import('../pages/AdminCategoryUpdatePage'));
 const AdminAddItemPage = lazy(() => import('../pages/AdminAddItemPage'));
+const AdminItemUpdatePage  = lazy(() => import('../pages/AdminItemUpdatePage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ export const App = () => {
         <Route path='add-category' element={<AdminAddCategoryPage/>}/>
         <Route path='category/:categoryId' element={<AdminCategoryUpdatePage/>}/>
         <Route path='add-item' element={<AdminAddItemPage/>}/>
+        <Route path='item/:itemId' element={<AdminItemUpdatePage/>}/>
       </Route>
     </Routes>
   );

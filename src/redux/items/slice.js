@@ -4,7 +4,12 @@ import {
   getItemsCategory,
   paginationItemsCategory,
   getItemDetails,
+  addItem,
+  getAllItems,
+  updateItem,
+  deleteItem
 } from './operetions';
+import { toast } from 'react-toastify';
 
 const initialState = {
   items: [],
@@ -54,6 +59,39 @@ const itemSlice = createSlice({
       state.isLoading = false;
       state.itemDetails = action.payload;
     },
+    [addItem.pending](state, action){
+      state.isLoading = true;
+    },
+    [addItem.fulfilled](state, action){
+      console.log(action.payloadіі);
+      state.isLoading = false;
+      state.items.push(action.payload);
+    },
+    [getAllItems.pending](state, action){
+      state.isLoading = true;
+    },
+    [getAllItems.fulfilled](state, action){
+      console.log(action.payload);
+      state.isLoading = false;
+      state.items = action.payload;
+    },
+    [updateItem.pending](state, action) {
+      state.isLoading = true;
+    },
+    [updateItem.fulfilled](state, action){
+      console.log(action.payload);
+      const findIndex = state.items.findIndex(item => item._id === action.payload._id);
+     state.items[findIndex] = action.payload;
+      state.isLoading = false;
+    },
+    [deleteItem.pending](state, action){
+      state.isLoading = true;
+    },
+    [deleteItem.fulfilled](state, action){
+      state.isLoading = false;
+      state.items = state.items.filter(item => item._id !== action.payload.item._id);
+      toast(action.payload.message)
+    }
   },
 });
 
