@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[733],{3733:function(e,t,n){n.r(t),n.d(t,{default:function(){return l}});var r=n(184),c=function(){return(0,r.jsx)("div",{className:"w-full h-full flex justify-center items-center my-auto",children:(0,r.jsx)("h1",{className:"text-[36px] font-bold tracking-[0.24px]",children:"Welcome to admin panele"})})},l=function(){return(0,r.jsx)(c,{})}}}]);
+//# sourceMappingURL=733.3000c0da.chunk.js.map
