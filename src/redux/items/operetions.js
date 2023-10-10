@@ -93,3 +93,12 @@ export const deleteItem = createAsyncThunk('api/deleteItem', async(itemId, {reje
     return rejectWithValue(error.message);
   }
 })
+
+export const filterItems = createAsyncThunk('api/filterItems', async(query, {rejectWithValue}) => {
+  try {
+    const {data} = await axios.get(`/api/item/filter-items?filters=${query}`);
+    return data;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
+})

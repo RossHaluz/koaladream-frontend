@@ -99,8 +99,9 @@ const AdminItemUpdate = ({item}) => {
     }
  
     const handleSelectFile = (e) => {
-       const file = e.target.files[0];
-      setSelectFile(file);
+       const files = e.target.files;
+       const selectedImagesArray = Array.from(files);
+      setSelectFile(selectedImagesArray);
     }
  
  
@@ -140,7 +141,9 @@ const AdminItemUpdate = ({item}) => {
           data.append('filters', JSON.stringify(selectedFilters));
        }
        if(selectFile){
-          data.append('updateImage', selectFile);
+         for (let i = 0; i < selectFile.length; i++) {
+          data.append('updateImage', selectFile[i]);
+         }
        }
       
       dispatch(updateItem({data, itemId}))
@@ -259,17 +262,25 @@ const AdminItemUpdate = ({item}) => {
      </div>
  <div className="flex flex-col gap-[15px]">
      <div>
-       <input type="file" className="hidden" ref={fileRef} onChange={handleSelectFile} />
+       <input type="file" className="hidden" multiple ref={fileRef} onChange={handleSelectFile} />
        <button type="button" onClick={() => fileRef.current.click()} className="text-gray-300 bg-gray-600 text-sm flex justify-center items-center border-2 border-dotted cursor-pointer py-4 w-[350px]">
           Add file
        </button>
      </div>
  
- {selectFile ?  <div className="w-[350px]">
-    <img src={URL.createObjectURL(selectFile)} alt="Item img" />
- </div> : <div className="w-[350px]">
-    <img src={currentImg} alt="Item img" />
- </div>}
+ {selectFile ?  <ul className="flex flex-col gap-[10px]">
+            {selectFile.map((image, index) => (
+              <li key={index}>
+              <img
+                src={URL.createObjectURL(image)}
+                alt={image.name}
+                className="w-[350px] h-[150px]"
+              />
+            </li>
+            ))}
+          </ul> : <>{currentImg?.map(item => <div key={item} className="w-[350px]">
+    <img src={item} alt="Item img" />
+ </div>)}</>}
      </div>
  
      </div>

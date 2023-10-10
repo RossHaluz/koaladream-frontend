@@ -63,7 +63,6 @@ const itemSlice = createSlice({
       state.isLoading = true;
     },
     [addItem.fulfilled](state, action){
-      console.log(action.payloadіі);
       state.isLoading = false;
       state.items.push(action.payload);
     },
@@ -71,7 +70,6 @@ const itemSlice = createSlice({
       state.isLoading = true;
     },
     [getAllItems.fulfilled](state, action){
-      console.log(action.payload);
       state.isLoading = false;
       state.items = action.payload;
     },
@@ -79,7 +77,6 @@ const itemSlice = createSlice({
       state.isLoading = true;
     },
     [updateItem.fulfilled](state, action){
-      console.log(action.payload);
       const findIndex = state.items.findIndex(item => item._id === action.payload._id);
      state.items[findIndex] = action.payload;
       state.isLoading = false;

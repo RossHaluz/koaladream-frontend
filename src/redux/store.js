@@ -18,6 +18,7 @@ import { mobileMenuReducer } from './mobileMenu/slice';
 import { filterRuducer } from './filter/slice';
 import { optionsReduser } from './options/slice';
 import { filterAdminReducer } from './filtersAdmin/slice';
+import { orderReducer } from './order/slice';
 
 const persistConfig = {
   key: 'token',
@@ -25,11 +26,16 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistOrder = {
+  key: 'orderItems',
+  whitelist: ['orderItems'],
+  storage
+}
+
 
 export const store = configureStore({
   reducer: {
-    auth: persistedReducer,
+    auth: persistReducer(persistConfig, authReducer),
     category: categoriesReducer,
     item: itemReducer,
     blog: blogReducer,
@@ -37,6 +43,7 @@ export const store = configureStore({
     filter: filterRuducer,
     option: optionsReduser,
     filterAdmin: filterAdminReducer,
+    order: persistReducer(persistOrder, orderReducer)
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

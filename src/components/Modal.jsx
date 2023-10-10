@@ -26,7 +26,7 @@ const closeModalOnBAckdrop = e => {
     {data}
   </button>
   
-   {isOpen && createPortal( <div className="fixed w-full h-full backdrop-blur-[1.5px] left-0 top-0 flex justify-center items-center px-[16px]" onClick={closeModalOnBAckdrop}>
+   {isOpen && createPortal( <div className="fixed w-full h-full backdrop-blur-[1.5px] left-0 top-0 z-10 flex justify-center items-center px-[16px]" onClick={closeModalOnBAckdrop}>
     <div className={`bg-[#F5FAF6] rounded-[5px] p-[30px] relative w-[416px] ${modalStyles}`}>
         {children}
         <RxCross2 className="absolute top-[15px] right-[15px] w-[24px] h-[24px]" onClick={closeModal}/>

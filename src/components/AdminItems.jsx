@@ -49,7 +49,7 @@ const AdminItems = () => {
             <td className='flex items-center gap-[10px] border border-solid border-[#343a40] p-[10px]'>
             <div className="w-[74px] h-[74px]">
                       <img
-                        src={images}
+                        src={images[0]}
                         alt="Item img"
                         className="object-contain w-full h-full"
                       />

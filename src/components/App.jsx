@@ -11,6 +11,8 @@ import LoyautAdmin from './LoyautAdmin';
 const UserAccountPage = lazy(() => import('../pages/UserAccountPage'));
 const CategoryItemsPage = lazy(() => import('../pages/CategoryItemsPage'));
 const ItemDetailsPage = lazy(() => import('../pages/ItemDetailsPage'));
+const CartPage = lazy(() => import('../pages/CartPage'));
+const OrderPage = lazy(() => import('../pages/OrderPage'));
 const AdminDashboardPage = lazy(() => import('../pages/AdminDashboardPage'));
 const AdminItemsPage = lazy(() => import('../pages/AdminItemsPage'));
 const AdminFilterPage = lazy(() => import('../pages/AdminFilterPage'));
@@ -47,6 +49,8 @@ export const App = () => {
         />
         <Route path=":category" element={<CategoryItemsPage />} />
         <Route path=":category/:itemId" element={<ItemDetailsPage />} />
+        <Route path='cart' element={<CartPage/>}/>
+        <Route path='order' element={<OrderPage/>}/>
       </Route>
 
       <Route path="/admin/login" element={<AdminLoginPage />} />

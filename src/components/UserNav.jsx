@@ -1,12 +1,15 @@
-import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
 import Modal from './Modal';
 import icons from './img/icons/icons.svg';
 import { selectIsLoging } from 'redux/auth/selectors';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { selectOrderItems } from 'redux/order/selectors';
 
 const UserNav = () => {
-  const isLogin = useSelector(selectIsLoging)
+  const isLogin = useSelector(selectIsLoging);
+  const items = useSelector(selectOrderItems);
+
 
   return (
     <div className="flex items-center gap-[20px]">
@@ -22,11 +25,15 @@ const UserNav = () => {
      <LoginForm />
       </Modal>}
 
-      <Modal data={ <svg className="w-[24px] h-[24px]">
+      <NavLink to='/cart' className='relative'>
+      <svg className={`w-[24px] h-[24px] ${items.length > 0 ?  'stroke-[#7FAA84]' : 'stroke-[#484848]'}`} fill='none'>
           <use href={`${icons}#icon-cart`}></use>
-        </svg>}>
-      </Modal>
+        </svg>
 
+       {items.length > 0 &&  <div className='bg-[#7FAA84] rounded-[50%] w-[15px] h-[15px] px-[5px] text-[#fff] text-[12px] tracking-[0.24px] flex items-center justify-center absolute left-[10px] bottom-[-4px]'>
+          {items.length}
+        </div>}
+</NavLink>
     </div>
   );
 };
