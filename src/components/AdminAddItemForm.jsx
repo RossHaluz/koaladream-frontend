@@ -19,90 +19,110 @@ const AdminAddItemForm = () => {
   const filters = useSelector(selectFilters);
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedOptionValues, setSelectedOptionValues] = useState([]);
-  const [selected, setSelected] = useState(null);
   const [chooseFilters, setChooseFilters] = useState([]);
   const [chooseFilterOptions, setChooseFilterOptions] = useState([]);
-  const [selectedFilters, setSelectedFilters] = useState(null);
   const [selectFile, setSelectFile] = useState(null);
-  const [priseForOption] = useState(null);
   const fileRef = useRef();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const setOptionValues = () => {
-      const selectedOptionsArray = selectedOptions.map(name => ({ name }));
-      const selectedOptionValuesArray = selectedOptionValues.map(name => ({
-        name,
-        price: priseForOption,
-      }));
-      const selectedCombined = selectedOptionsArray.map(option => ({
-        ...option,
-        options: selectedOptionValuesArray.map(value => value.name),
-      }));
-      setSelected(selectedCombined);
-    };
-    setOptionValues();
-  }, [selectedOptionValues, selectedOptions, priseForOption]);
-
-  useEffect(() => {
-    const setFilterValues = () => {
-      const selectedFiltersArray = chooseFilters.map(name => ({ name }));
-      const selectedFilterOptionsArray = chooseFilterOptions.map(name => ({
-        name,
-      }));
-      const selectedCombined = selectedFiltersArray.map(option => ({
-        ...option,
-        options: selectedFilterOptionsArray.map(value => value.name),
-      }));
-      setSelectedFilters(selectedCombined);
-    };
-    setFilterValues();
-  }, [chooseFilters, chooseFilterOptions]);
+  console.log(selectedOptions);
 
   const handleChangeOption = e => {
-    const { value, checked } = e.target;
+    const { value, checked, attributes } = e.target;
+    const optionId = attributes.opt_val.value;
 
     if (checked) {
-      setSelectedOptions(prev => [...prev, value]);
+      setSelectedOptions(prev => [
+        ...prev,
+        {name: value, optionId: optionId, options: []}
+      ]);
     } else {
-      setSelectedOptions(selectedOptions.filter(item => item !== value));
+      setSelectedOptions(selectedOptions.filter(item => item.name !== value));
     }
   };
 
   const handleChangeOptionValues = e => {
-    const { value, checked } = e.target;
-
+    const { value, checked, attributes } = e.target;
+    const optionId = attributes.opt_val.value;
+    
     if (checked) {
-      setSelectedOptionValues(prev => [
-        ...prev,
-        { name: value, price: priseForOption },
-      ]);
+      setSelectedOptionValues(prev => [...prev, value])
+      setSelectedOptions(prevOptions => {
+        return prevOptions.map(option => {
+          if (option.optionId === optionId) {
+            // Оновлюємо об'єкт з поточним optionId
+            return {
+              ...option,
+              options: [
+                ...option.options,
+                { name: value, price: null, optionId: optionId },
+              ],
+            };
+          }
+          return option;
+        });
+      });
     } else {
-      setSelectedOptionValues(
-        selectedOptionValues.filter(item => item.name !== value)
-      );
+      // Видалити відповідний об'єкт із вибраних options
+      setSelectedOptionValues(prev => prev.filter(item => item !== value))
+      setSelectedOptions(prevOptions => {
+        return prevOptions.map(option => {
+          if (option.optionId === optionId) {
+            return {
+              ...option,
+              options: option.options.filter(item => item.name !== value),
+            };
+          }
+          return option;
+        });
+      });
     }
   };
 
   const handleChangeFilter = e => {
-    const { value, checked } = e.target;
+    const { value, checked, attributes } = e.target;
+    const filterId = attributes.filter_val.value;
 
     if (checked) {
-      setChooseFilters(prev => [...prev, value]);
+      setChooseFilters(prev => [...prev, {name: value, filterId: filterId, options: []}]);
     } else {
       setChooseFilters(chooseFilters.filter(item => item !== value));
     }
   };
 
   const handleChangeFilterOptions = e => {
-    const { value, checked } = e.target;
-
+    const { value, checked, attributes } = e.target;
+    const filterId = attributes.filter_val.value;
+ 
     if (checked) {
-      setChooseFilterOptions(prev => [...prev, value]);
+      setChooseFilterOptions(prev => [...prev, value])
+      setChooseFilters(prevFilters => {
+        return prevFilters.map(item => {
+          if(item.filterId === filterId){
+            return {
+              ...item,
+              options: [
+                ...item.options,
+                {name: value, filterId: filterId}
+              ]
+            }
+          }
+          return item;
+        })
+      })
     } else {
-      setChooseFilterOptions(
-        chooseFilterOptions.filter(item => item !== value)
-      );
+      setChooseFilterOptions(prev => prev.filter(item => item !== value));
+      setChooseFilters(prev => {
+        return prev.map(item => {
+          if(item.filterId === filterId){
+            return {
+              ...item,
+              options: item.options.filter(option => option.name !== value)
+            }
+          }
+          return item;
+        })
+      })
     }
   };
 
@@ -114,9 +134,10 @@ const AdminAddItemForm = () => {
 
   const onChangeOptionPrice = (e, nameOption) => {
     const { value } = e.target;
-    const findOption = selectedOptionValues?.find(
-      item => item?.name === nameOption.name
-    );
+    console.log(nameOption);
+    const options = selectedOptions.flatMap(item => item.options);
+    const findOption = options.find(item => item.name === nameOption);
+
     findOption.price = Number(value);
   };
 
@@ -155,9 +176,9 @@ const AdminAddItemForm = () => {
 
     const data = new FormData();
     data.append('title', title);
-    if (desc) {
+
       data.append('desc', desc);
-    }
+   
     data.append('hitSales', hitSales);
     data.append('care', care);
     data.append('price', price);
@@ -170,17 +191,18 @@ const AdminAddItemForm = () => {
     data.append('status', status);
     data.append('article', article);
     data.append('categoryName', categoryName);
-    if (selected) {
-      data.append('options', JSON.stringify(selected));
+    if (selectedOptions) {
+      data.append('options', JSON.stringify(selectedOptions));
     }
-    if (selectedFilters) {
-      data.append('filters', JSON.stringify(selectedFilters));
+    if (chooseFilters) {
+      data.append('filters', JSON.stringify(chooseFilters));
     }
     if (selectFile) {
       for (let i = 0; i < selectFile.length; i++) {
         data.append('imageItem', selectFile[i]);
       }
     }
+    console.log(data);
     dispatch(addItem(data));
     navigate('/admin/items');
     resetForm();
@@ -286,16 +308,15 @@ const AdminAddItemForm = () => {
                         <label className="flex items-center gap-[10px]">
                           <Field
                             name={`${options}[${idx}].${name}`}
-                            checked={selectedOptions?.find(
-                              item => item.name === name
-                            )}
+                            opt_val={id}
+                            checked={selectedOptions?.find(item => item.name === name)}
                             type="checkbox"
                             value={name}
                             onChange={handleChangeOption}
                           />
                           <h3 className="text-[18px] font-semibold">{name}</h3>
                         </label>
-                        {selectedOptions.find(item => item === name) &&
+                        {selectedOptions.find(item => item.name === name) &&
                           optionValues?.map(({ name }, idx) => {
                             return (
                               <>
@@ -305,10 +326,9 @@ const AdminAddItemForm = () => {
                                 >
                                   <Field
                                     name={`${options}[${idx}].${name}`}
+                                    opt_val={id}
                                     value={name}
-                                    checked={selectedOptionValues.find(
-                                      item => item.name === name
-                                    )}
+                                  checked={selectedOptionValues.find(item => item === name)}
                                     onChange={handleChangeOptionValues}
                                     type="checkbox"
                                   />
@@ -317,7 +337,7 @@ const AdminAddItemForm = () => {
                                   </h3>
                                 </label>
                                 {selectedOptionValues?.find(
-                                  item => item?.name === name
+                                  item => item === name
                                 ) && (
                                   <input
                                     type="text"
@@ -325,7 +345,7 @@ const AdminAddItemForm = () => {
                                     onChange={e => {
                                       const nameOption =
                                         selectedOptionValues?.find(
-                                          item => item?.name === name
+                                          item => item === name
                                         );
                                       onChangeOptionPrice(e, nameOption);
                                     }}
@@ -349,22 +369,24 @@ const AdminAddItemForm = () => {
                         <label className="flex items-center gap-[10px]">
                           <Field
                             name={`${filters}[${idx}].${name}`}
+                            filter_val={id}
                             value={name}
                             type="checkbox"
-                            checked={chooseFilters.find(item => item === name)}
+                            checked={chooseFilters.find(item => item.name === name)}
                             onChange={handleChangeFilter}
                           />
                           <h3 className="text-[18px] font-semibold">{name}</h3>
                         </label>
-                        {chooseFilters.find(item => item === name) &&
+                        {chooseFilters.find(item => item.name === name) &&
                           filterValue?.map(({ name }, idx) => {
                             return (
                               <label className="flex items-center gap-[10px]">
                                 <Field
                                   name={`${filters}[${idx}].${name}`}
                                   value={name}
+                                  filter_val={id}
                                   type="checkbox"
-                                  checked={chooseFilters.find(
+                                  checked={chooseFilterOptions.find(
                                     item => item === name
                                   )}
                                   onChange={handleChangeFilterOptions}

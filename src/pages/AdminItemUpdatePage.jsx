@@ -9,6 +9,7 @@ const AdminItemUpdatePage = () => {
 const dispatch = useDispatch();
 const item = useSelector(selectItemDetails);
 const {itemId} = useParams();
+console.log(item);
 
 useEffect(() => {
     dispatch(getItemDetails(itemId))

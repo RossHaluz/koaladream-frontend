@@ -13,6 +13,7 @@ const CategoryItemsPage = lazy(() => import('../pages/CategoryItemsPage'));
 const ItemDetailsPage = lazy(() => import('../pages/ItemDetailsPage'));
 const CartPage = lazy(() => import('../pages/CartPage'));
 const OrderPage = lazy(() => import('../pages/OrderPage'));
+const SuccessOrderPage = lazy(() => import('../pages/SuccessOrderPage'));
 const AdminDashboardPage = lazy(() => import('../pages/AdminDashboardPage'));
 const AdminItemsPage = lazy(() => import('../pages/AdminItemsPage'));
 const AdminFilterPage = lazy(() => import('../pages/AdminFilterPage'));
@@ -29,6 +30,8 @@ const AdminAddCategoryPage = lazy(() => import('../pages/AdminAddCategoryPage'))
 const AdminCategoryUpdatePage = lazy(() => import('../pages/AdminCategoryUpdatePage'));
 const AdminAddItemPage = lazy(() => import('../pages/AdminAddItemPage'));
 const AdminItemUpdatePage  = lazy(() => import('../pages/AdminItemUpdatePage'));
+const AdminOrderUpdatePage = lazy(() => import('../pages/AdminOrderUpdatePage'));
+const AdminOrderDetailsPage = lazy(() => import('../pages/AdminOrderDetailsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -51,6 +54,7 @@ export const App = () => {
         <Route path=":category/:itemId" element={<ItemDetailsPage />} />
         <Route path='cart' element={<CartPage/>}/>
         <Route path='order' element={<OrderPage/>}/>
+        <Route path='success-order' element={<SuccessOrderPage/>}/>
       </Route>
 
       <Route path="/admin/login" element={<AdminLoginPage />} />
@@ -69,6 +73,8 @@ export const App = () => {
         <Route path='category/:categoryId' element={<AdminCategoryUpdatePage/>}/>
         <Route path='add-item' element={<AdminAddItemPage/>}/>
         <Route path='item/:itemId' element={<AdminItemUpdatePage/>}/>
+        <Route path='order/:orderId' element={<AdminOrderUpdatePage/>}/>
+        <Route path='orderDetails/:orderId' element={<AdminOrderDetailsPage/>}/>
       </Route>
     </Routes>
   );

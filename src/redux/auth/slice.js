@@ -5,6 +5,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = { 
     user: null,
+    userContactDetails: null,
     token: null,
     error: null,
     isLoging: false,
@@ -15,14 +16,23 @@ const initialState = {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        createUserContactDetails(state, action){
+            state.userContactDetails = action.payload;
+        },
+        removeUserContactDetails(state, action){
+            state.userContactDetails = null;
+        }
+    },
     extraReducers: {
         [registerUser.pending](state, action){
             state.isLoading = true;
         },
         [registerUser.fulfilled](state, action) {
+            console.log(action.payload);
             state.isLoading = false;
             state.user = action.payload;
+            state.userContactDetails = action.payload;
             state.token = action.payload.token;
             state.isLoging = true;
             state.isRefreshing = true;
@@ -105,5 +115,7 @@ const authSlice = createSlice({
         }
     }
 })
+
+export const {createUserContactDetails, removeUserContactDetails} = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

@@ -12,6 +12,7 @@ const removeAuthToken = () => {
 }
 
 export const registerUser = createAsyncThunk('api/registerUser', async(params, {rejectWithValue}) => {
+    console.log(params);
     try {
         const {data} = await axios.post('/api/user/register', params);
         setAuthToken(data.newUser.token);

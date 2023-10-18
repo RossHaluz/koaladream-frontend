@@ -1,5 +1,7 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, FieldArray } from "formik";
 import { useEffect, useRef, useState } from "react";
+import { BsPlusLg } from "react-icons/bs";
+import { RiDeleteBinLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCategories } from "redux/categories/operetions";
@@ -12,92 +14,129 @@ import { selectOptions } from "redux/options/selectors";
 
 const AdminItemUpdate = ({item}) => {
 
-    const {title, desc, images, price, oldPrice, status, categoryName, article, options, filters, hitSales, _id: itemId} = item;
-
+    const {title, desc, images, price, oldPrice, care, characteristics, status, categoryName, article, options, filters, hitSales, _id: itemId} = item;
+    
     const dispatch = useDispatch();
     const categories = useSelector(selectCategiries);
     const allOptions = useSelector(selectOptions);
     const allFilters = useSelector(selectFilters);
-    const [selectedOptions, setSelectedOptions] = useState(JSON.parse(options).map(item => item.name));
-    const [selectedOptionValues, setSelectedOptionValues] = useState(JSON.parse(options).flatMap(item => item.options));
-    const [selected, setSelected] = useState(null);
-    const [chooseFilters, setChooseFilters] = useState(JSON.parse(filters).map(item => item.name));
+    const [selectedOptions, setSelectedOptions] = useState(JSON.parse(options));
+    const [selectedOptionValues, setSelectedOptionValues] = useState(JSON.parse(options).flatMap(item => item.options))
+    const [chooseFilters, setChooseFilters] = useState(JSON.parse(filters));
     const [chooseFilterOptions, setChooseFilterOptions] = useState(JSON.parse(filters).flatMap(item => item.options));
-    const [currentImg] = useState(images);
-    const [selectedFilters, setSelectedFilters] = useState(null);
+    const [currentImg] = useState(images.map(item => item));
+    const [currentDesc, setCurrentDesc] = useState(null)
+    const [currentCare, setCurrentCare] = useState(null);
     const [selectFile, setSelectFile] = useState(null);
     const fileRef = useRef();
     const navigate = useNavigate();
 
-    useEffect(() => {
-       const setOptionValues = () => {
-         const selectedOptionsArray = selectedOptions.map((name) => ({ name }));
-         const selectedOptionValuesArray = selectedOptionValues.map((name) => ({ name }));
-         const selectedCombined = selectedOptionsArray.map((option) => ({
-           ...option,
-           options: selectedOptionValuesArray.map((value) => value.name),
-         }));
-         setSelected(selectedCombined);
-       };
-       setOptionValues();
-     }, [selectedOptionValues, selectedOptions]);
- 
- 
-     useEffect(() => {
-       const setFilterValues = () => {
-          const selectedFiltersArray = chooseFilters.map((name) => ({name}));
-          const selectedFilterOptionsArray = chooseFilterOptions.map((name) => ({name}));
-          const selectedCombined = selectedFiltersArray.map((option) => ({
-             ...option,
-             options: selectedFilterOptionsArray.map((value) => value.name)
-          }));
-          setSelectedFilters(selectedCombined)
-       }
-       setFilterValues()
-     }, [chooseFilters, chooseFilterOptions])
-     
- 
- 
+    console.log(currentImg);
+
     const handleChangeOption = e => {
-       const {value, checked} = e.target;
-   
+       const {value, checked, attributes} = e.target;
+       const optionId = attributes.opt_val.value;
+
        if (checked) {
-          setSelectedOptions(prev => [...prev, value]);
+          setSelectedOptions(prev => [
+            ...prev,
+            {name: value, optionId: optionId, options: selectedOptions}
+          ]);
         } else {
-          setSelectedOptions(selectedOptions.filter((item) => item !== value));
+          setSelectedOptions(selectedOptions.filter(item => item.name !== value));
         }
     }
  
     const handleChangeOptionValues = e => {
-       const {value, checked} = e.target;
- 
+       const {value, checked, attributes} = e.target;
+       const optionId = attributes.opt_val.value;
+
        if(checked){
-          setSelectedOptionValues(prev => [...prev, value])
+          setSelectedOptionValues(prev => [...prev, { name: value, price: null, optionId: optionId }])
+          setSelectedOptions(prevOptions => {
+            return prevOptions.map(item => {
+               if(item.optionId === optionId){
+                  return {
+                     ...item, 
+                     options: [
+                        ...item.options,
+                        { name: value, price: null, optionId: optionId }
+                     ]
+                  }
+               }
+               return item;
+            })
+          })
        } else {
-          setSelectedOptionValues(selectedOptionValues.filter((item) => item !== value));
+         setSelectedOptionValues(prev => prev.filter(item => item.name !== value))
+         setSelectedOptions(prev => {
+            return prev.map(option => {
+               if(option.optionId === optionId){
+                  return {
+                     ...option,
+                     options: option.options.filter(item => item.name !== value)
+                  }
+               }
+               return option;
+            })
+         })
         }
     }
  
     const handleChangeFilter = e => {
-       const {value, checked} = e.target;
+       const {value, checked, attributes} = e.target;
+       const filterId = attributes.filter_val.value;
  
        if(checked){
-          setChooseFilters(prev => [...prev, value]);
+          setChooseFilters(prev => [...prev, {name: value, filterId: filterId, options: chooseFilters}]);
        }else{
-          setChooseFilters(chooseFilters.filter(item => item !== value))
+          setChooseFilters(chooseFilters.filter(item => item .name!== value))
        }
     }
  
     const handleChangeFilterOptions = e => {
-       const {value, checked} = e.target;
- 
+       const {value, checked, attributes} = e.target;
+       const filterId = attributes.filter_val.value;
+
        if(checked){
-          setChooseFilterOptions(prev => [...prev, value])
+         setChooseFilterOptions(prev => [...prev, {name: value, filterId: filterId}]);
+         setChooseFilters(prevFilters => {
+            return prevFilters.map(option => {
+               if(option.filterId === filterId){
+                  return {
+                     ...option,
+                     options: [
+                        ...option.options,
+                        {name: value, filterId: filterId}
+                     ]
+                  }
+               }
+               return option
+            })
+         })
        }else{
-          setChooseFilterOptions(chooseFilterOptions.filter(item => item !== value));
+         setChooseFilterOptions(prev => prev.filter(item => item.name !== value))
+         setChooseFilters(prevFilters => {
+            return prevFilters.map(item => {
+               if(item.filterId === filterId){
+                  return {
+                     ...item,
+                     options: item.options.filter(item => item.name !== value)
+                  }
+               }
+               return item;
+            })
+         })
        }
     }
- 
+
+    const onChangeOptionPrice = (e, nameOption) => {
+      const {value} = e.target;
+      const options = selectedOptions.flatMap(item => item.options);
+      const findOption = options.find(item => item.name === nameOption.name);
+      findOption.price = Number(value)
+    }
+
     const handleSelectFile = (e) => {
        const files = e.target.files;
        const selectedImagesArray = Array.from(files);
@@ -120,13 +159,15 @@ const AdminItemUpdate = ({item}) => {
          article: article,
          categoryName: categoryName,
          hitSales: hitSales,
+         characteristics: characteristics.length > 0 ? JSON.parse(characteristics) : [],
+         care: care || ''
      }
  
      const onSubmit = (values, { resetForm }) => {
-       const {title, desc, price, oldPrice, status, article, categoryName, hitSales} = values;
+       const {title, desc, price, oldPrice, status, article, characteristics, categoryName, hitSales} = values;
        const data = new FormData();
        data.append('title', title);
-        data.append('desc', desc);
+         data.append('desc', desc);
        data.append('hitSales', hitSales);
        data.append('price', price);
           data.append('oldPrice', oldPrice);
@@ -134,17 +175,28 @@ const AdminItemUpdate = ({item}) => {
        data.append('status', status);
        data.append('article', article);
        data.append('categoryName', categoryName);
-       if(selected){
-          data.append('options', JSON.stringify(selected));
+       if(selectedOptions){
+          data.append('options', JSON.stringify(selectedOptions));
        }
-       if(selectedFilters){
-          data.append('filters', JSON.stringify(selectedFilters));
+       if (characteristics) {
+         data.append('characteristics', JSON.stringify(characteristics));
        }
+       if(chooseFilters){
+          data.append('filters', JSON.stringify(chooseFilters));
+       }
+       data.append('care', care);
+
        if(selectFile){
          for (let i = 0; i < selectFile.length; i++) {
           data.append('updateImage', selectFile[i]);
          }
+       }else{
+         currentImg.map(item => {
+           return data.append('`updateImage`', item)
+         })
+
        }
+    
       
       dispatch(updateItem({data, itemId}))
       navigate('/admin/items')
@@ -155,11 +207,13 @@ const AdminItemUpdate = ({item}) => {
     <div className="p-[15px] flex  gap-[15px]">
         <div className="w-full">
     <h1 className="text-[24px] font-bold">Eddit item</h1>
-     <Formik 
+      <Formik 
      initialValues={initialValues}
      onSubmit={onSubmit}
      >
-      <Form className="w-full flex flex-col gap-[15px]">
+      {({values}) => {
+      return (
+         <Form className="w-full flex flex-col gap-[15px]">
      <div className="grid grid-cols-1 items-center gap-[15px]">
       <div className="flex flex-col gap-[15px]">
          <h3 className="text-[18px] font-medium">Title item <span className="text-red-500">*</span></h3>
@@ -212,14 +266,28 @@ const AdminItemUpdate = ({item}) => {
        {allOptions?.map(({optionValues, name, _id: id}, idx) => {
           return <li key={id}>
              <label className="flex items-center gap-[10px]">
-                <Field name={`${allOptions}[${idx}].${name}`} checked={selectedOptions?.find(item => item === name)} type='checkbox' value={name} onChange={handleChangeOption} />
+                <Field name={`${allOptions}[${idx}].${name}`} opt_val={id} checked={selectedOptions?.find(item => item.name === name)} type='checkbox' value={name} onChange={handleChangeOption} />
                 <h3 className="text-[18px] font-semibold">{name}</h3>
              </label>
-             {selectedOptions.find(item => item === name) && optionValues?.map(({name}, idx) => {
-                return <label className="flex items-center gap-[10px]" key={idx}>
-                   <Field name={`${allOptions}[${idx}].${name}`} value={name} checked={selectedOptionValues.find(item => item === name)}  onChange={handleChangeOptionValues} type='checkbox'/>
-                   <h3 className="text-[16px] font-medium">{name}</h3>
-                </label>
+             {selectedOptions.find(item => item.name === name) && optionValues?.map(({name, price}, idx) => {
+                return <><label className="flex items-center gap-[10px]" key={idx}>
+                <Field name={`${allOptions}[${idx}].${name}`} opt_val={id} value={name} checked={selectedOptionValues.find(item => item.name === name)} onChange={handleChangeOptionValues} type='checkbox'/>
+                <h3 className="text-[16px] font-medium">{name}</h3>
+             </label>
+               {selectedOptionValues?.find(item => item.name === name) && (
+                  <input
+                    type="text"
+                    value={selectedOptions.map(item => item.options.find(item => item.name === name)).flatMap(item => item?.price)[0] || ''}
+                    placeholder="Type price for option"
+                    onChange={e => {
+                      const nameOption =
+                        selectedOptionValues?.find(
+                          item => item.name === name
+                        );
+                      onChangeOptionPrice(e, nameOption);
+                    }}
+                  />
+                )}</>
              })}
           </li>
        })}
@@ -232,12 +300,12 @@ const AdminItemUpdate = ({item}) => {
       {allFilters?.map(({name, filterValue, _id: id}, idx) => {
        return <li key={id}>
           <label className="flex items-center gap-[10px]">
-             <Field name={`${allFilters}[${idx}].${name}`} value={name} type='checkbox' checked={chooseFilters.find(item => item === name)} onChange={handleChangeFilter}/>
+             <Field name={`${allFilters}[${idx}].${name}`} filter_val={id} value={name} type='checkbox' checked={chooseFilters.find(item => item.name === name)} onChange={handleChangeFilter}/>
              <h3 className="text-[18px] font-semibold">{name}</h3>
           </label>
-          {chooseFilters.find(item => item === name) && filterValue?.map(({name}, idx) => {
+          {chooseFilters.find(item => item.name === name) && filterValue?.map(({name}, idx) => {
              return <label className="flex items-center gap-[10px]">
-                <Field name={`${allFilters}[${idx}].${name}`} value={name} type='checkbox' checked={chooseFilterOptions.find(item => item === name)} onChange={handleChangeFilterOptions}/>
+                <Field name={`${allFilters}[${idx}].${name}`} filter_val={id} checked={chooseFilterOptions.find(item => item === name)} value={name} type='checkbox'  onChange={handleChangeFilterOptions}/>
              <h3 className="text-[16px] font-medium">{name}</h3>
              </label>
           })}
@@ -245,6 +313,72 @@ const AdminItemUpdate = ({item}) => {
       })}
       </ul>
       </div>
+
+      <div>
+                <FieldArray
+                  name="characteristics"
+                  render={arrayHelpers => (
+                    <div className="flex flex-col gap-[15px]">
+                      <div className="flex items-center gap-[15px]">
+                        <h2 className="text-[24px] font-bold">
+                          Add characteristics
+                        </h2>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            arrayHelpers.push({ name: '', option: '' })
+                          }
+                          className="p-[15px] bg-[#343a40] rounded-[5px] w-[34px] h-[34px] relative"
+                        >
+                          <BsPlusLg className="text-[#fff] text-[24px] absolute top-[5px] left-[5px]" />
+                        </button>
+                      </div>
+                      <div className="flex flex-col gap-[15px]">
+                        {values.characteristics &&
+                          values.characteristics.length > 0 &&
+                          values.characteristics?.map((item, index) => {
+                            return (
+                              <>
+                                <div className="flex items-center gap-[10px]">
+                                  <label className="flex flex-col gap-[10px]">
+                                    Name
+                                    <Field
+                                      name={`characteristics[${index}].name`}
+                                    />
+                                  </label>
+
+                                  <label className="flex flex-col gap-[10px]">
+                                    Option
+                                    <Field
+                                      name={`characteristics[${index}].option`}
+                                    />
+                                  </label>
+
+                                  <button
+                                    type="button"
+                                    onClick={() => arrayHelpers.remove(index)}
+                                  >
+                                    <RiDeleteBinLine className="w-[24px] h-[24px] text-red-500" />
+                                  </button>
+                                </div>
+                              </>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  )}
+                />
+              </div>
+
+              <div>
+                <h3 className="text-[18px] font-medium">Care for item</h3>
+                <Field
+                  name="care"
+                  as="textarea"
+                  placeholder="Care for item"
+                  className="bg-transparent resize-none border border-solid border-[#7FAA84] w-full h-[350px] rounded-[5px] px-[15px] py-[15px] text-[16px] text-[#484848]/[.50] tracking-[0.32px] leading-[24px] outline-none"
+                />
+              </div>
  
       <div className="flex flex-col gap-[15px] items-start">
       <h3 className="text-[24px] font-medium">Hot sales</h3>
@@ -258,6 +392,8 @@ const AdminItemUpdate = ({item}) => {
  
       <button type="submit" className="py-[15px] px-[25px] bg-[#7FAA84] rounded-[5px] text-[#fff] text-[16px] font-medium w-[220px]">Update item</button>
       </Form>
+      )
+       }}
      </Formik>
      </div>
  <div className="flex flex-col gap-[15px]">

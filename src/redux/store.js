@@ -21,8 +21,8 @@ import { filterAdminReducer } from './filtersAdmin/slice';
 import { orderReducer } from './order/slice';
 
 const persistConfig = {
-  key: 'token',
-  whitelist: ['token'],
+  key: 'userDetails',
+  whitelist: ['token', 'userContactDetails'],
   storage,
 };
 

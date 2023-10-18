@@ -61,7 +61,7 @@ const Filter = () => {
                       <label className="flex items-center gap-[15px]">
                         <input
                           type="checkbox"
-                          className={`appearance-none w-[24px] h-[24px] border border-solid border-[#78AB7E] rounded-[5px] bg-transparent checked:border-2 relative checked:after:content-[''] checked:after:bg-[#78AB7E] checked:after:w-[15px] checked:after:h-[15px] checked:after:absolute checked:after:left-[2.5px] checked:after:top-[2.5px] `}
+                          className={`appearance-none w-[24px] h-[24px] border border-solid border-[#78AB7E] rounded-[5px] bg-transparent checked:border-2 relative checked:after:content-[''] checked:after:bg-[#78AB7E] checked:after:w-[15px] checked:after:h-[15px] checked:after:absolute checked:after:left-[2.5px] checked:after:top-[2.5px]`}
                           onChange={onChangeFilter}
                           value={name}
                         />

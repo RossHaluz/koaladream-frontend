@@ -3,6 +3,7 @@ import { LiaPlusSolid } from "react-icons/lia";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { removeUserContactDetails } from "redux/auth/slice";
 import { selectOrderItems } from "redux/order/selectors";
 import { removeItemFromCart } from "redux/order/slice";
 
@@ -12,6 +13,7 @@ const dispatch = useDispatch();
 
 const removeItem = (itemId) => {
     dispatch(removeItemFromCart(itemId))
+    dispatch(removeUserContactDetails())
 }
 
   return <div className="pt-[30px] pb-[40px]">

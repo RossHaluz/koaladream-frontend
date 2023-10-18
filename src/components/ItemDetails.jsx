@@ -12,9 +12,8 @@ const ItemDetails = ({ item }) => {
   const { title, images, status, article, price, oldPrice, options, desc, characteristics, care, _id: id } = item;
   const parseOptions = JSON.parse(options);
   let parseCharacteristics = null;
-  const [currentPrice, setCurrentPrice] = useState(parseOptions.map(item => item.options[0].price));
-  const [selectOption,  setSelectOption] = useState(parseOptions.map(item => item.options[0].name));
-
+  const [currentPrice, setCurrentPrice] = useState(parseOptions?.map(item => item.options[0].price));
+  const [selectOption,  setSelectOption] = useState();
 
  if(characteristics.length > 0){
   parseCharacteristics = JSON.parse(characteristics);
