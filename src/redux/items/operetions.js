@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8001';
+axios.defaults.baseURL = 'https://koaladream.onrender.com';
 
 export const getHitsItems = createAsyncThunk(
   'api/getHitsItems',
@@ -94,9 +94,10 @@ export const deleteItem = createAsyncThunk('api/deleteItem', async(itemId, {reje
   }
 })
 
-export const filterItems = createAsyncThunk('api/filterItems', async(query, {rejectWithValue}) => {
+export const filterItems = createAsyncThunk('api/filterItems', async(params, {rejectWithValue}) => {
+const {category, getSearchParams: query} = params;
   try {
-    const {data} = await axios.get(`/api/item/filter-items?filters=${query}`);
+    const {data} = await axios.get(`/api/item/filter-items/${category}?filters=${query}`);
     return data;
   } catch (error) {
     return rejectWithValue(error.message);

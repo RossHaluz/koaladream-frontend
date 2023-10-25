@@ -7,7 +7,8 @@ import {
   addItem,
   getAllItems,
   updateItem,
-  deleteItem
+  deleteItem,
+  filterItems
 } from './operetions';
 import { toast } from 'react-toastify';
 
@@ -18,6 +19,7 @@ const initialState = {
   currentPage: 1,
   totalPages: null,
   itemDetails: null,
+  count: 1
 };
 
 const itemSlice = createSlice({
@@ -27,6 +29,10 @@ const itemSlice = createSlice({
     changePage(state, action) {
       state.currentPage = action.payload;
     },
+    setCount(state, action) {
+      console.log(action.payload);
+      state.count = action.payload;
+    }
   },
   extraReducers: {
     [getHitsItems.pending](state, __) {
@@ -88,10 +94,17 @@ const itemSlice = createSlice({
       state.isLoading = false;
       state.items = state.items.filter(item => item._id !== action.payload.item._id);
       toast(action.payload.message)
+    },
+    [filterItems.pending](state, action){
+      state.isLoading = true;
+    },
+    [filterItems.fulfilled](state, action){
+      state.isLoading = false;
+      state.items = action.payload;
     }
   },
 });
 
-export const { changePage } = itemSlice.actions;
+export const { changePage, setCount } = itemSlice.actions;
 
 export const itemReducer = itemSlice.reducer;

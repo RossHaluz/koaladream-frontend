@@ -48,9 +48,9 @@ const navigate = useNavigate();
   };
 
   return (
-    <div className="flex flex-col gap-[30px] p-[30px]">
+    <div className="flex flex-col gap-[30px] tb:p-[30px]">
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        <Form className='flex flex-col gap-[30px]'>
+        <Form className='flex flex-col gap-[15px] tb:gap-[30px]'>
           <div className="flex flex-col gap-[60px]">
             {/* Доставка */}
             <div className="flex flex-col gap-[30px]">
@@ -89,7 +89,7 @@ const navigate = useNavigate();
                   <h3>“УкрПошта”</h3>
                 </label>
 
-                <div className="flex items-center gap-[30px]">
+                <div className="flex flex-col gap-[15px] items-start tb:flex-row tb:items-center tb:gap-[30px]">
                   <button
                     type="button"
                     className={`${
@@ -114,7 +114,7 @@ const navigate = useNavigate();
                   </button>
                 </div>
 
-                <div className="w-[406px] flex flex-col gap-[16px]">
+                <div className="w-full tb:w-[406px] flex flex-col gap-[16px]">
                   <Field
                     as="select"
                     name="city"
@@ -158,7 +158,7 @@ const navigate = useNavigate();
             <div className="flex flex-col gap-[30px]">
               <OrderFormTitle number={3} title={'Оплата'} />
 
-              <div className="py-[30px] px-[15px] bg-[#EAF2EB] rounded-[5px] w-[415px] flex flex-col gap-[30px]">
+              <div className="py-[30px] px-[15px] bg-[#EAF2EB] rounded-[5px] w-full tb:w-[415px] flex flex-col gap-[30px]">
                 <div className='flex flex-col gap-[30px]'>
                   <h3 className="text-[16px] font-bold leading-[24px] tracking-[0.32px]">
                     Безпечна оплата картою на сайті
@@ -198,23 +198,23 @@ const navigate = useNavigate();
             <div className='flex flex-col gap-[30px]'>
             <div className='flex flex-col gap-[20px]'>
             <OrderFormTitle number={4} title={'Коментар до замовлення'} />
-            <Field name='comment' placeholder='Введіть коментар' className='py-[8px] px-[15px] border border-s border-[#7FAA84] rounded-[5px] text-[16px] font-medium leading-[24px] tracking-[0.32px] text-[#484848]/[.50] bg-transparent w-[406px]'/>
+            <Field name='comment' placeholder='Введіть коментар' className='py-[8px] px-[15px] border border-s border-[#7FAA84] rounded-[5px] text-[16px] font-medium leading-[24px] tracking-[0.32px] text-[#484848]/[.50] bg-transparent w-full tb:w-[406px]'/>
             </div>
 
-            <label className="text-[16px] leading-[24px]">
+            <label className="text-[16px] leading-[24px] flex items-center">
                       <Field type="checkbox" className="sr-only pl-[34px]" onClick={() => setChecked(prev => !prev)}/>
                       <span
                         className={`w-[24px] h-[24px] border border-solid border-[#7FAA84] rounded-[5px] absolute checked:border-[#000] checked::before:border-[#000] flex justify-center items-center`}
                       >
                         {checked && <BsCheckLg className="w-[15px] h-[15px] text-[#7FAA84]" />}
                       </span>
-                      <h3 className="ml-[34px] text-[16px] font-medium leading-[24px] tracking-[0.32px] w-[376px]">
+                      <h3 className="ml-[34px] text-[12px] tb:text-[16px] tb:font-medium tb:leading-[24px] tb:tracking-[0.32px] w-[265px] tb:w-[376px]">
                       Не телефонувати мені для підтвердження 
 замовлення та консультації
                       </h3>
                     </label>
 
-                    <p className='text-[16px] leading-[24px] tracking-[0.32px] w-[380px]'>Підтверджуючи замовлення, ви приймаєте 
+                    <p className='text-[12px] tb:text-[16px] tb:leading-[24px] tb:tracking-[0.32px] w-[318px] tb:w-[380px]'>Підтверджуючи замовлення, ви приймаєте 
 умови <span className='underline'>договору оферти.</span></p>
 
             </div>

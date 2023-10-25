@@ -1,23 +1,33 @@
-import { useState, useEffect } from 'react';
-import { BiChevronDown } from 'react-icons/bi';
+import { useDispatch } from "react-redux";
+import { setCount } from "redux/items/slice";
 
-const ItemDetailsOptions = ({ parseOptions, setCurrentPrice, setSelectOption, selectOption }) => {
+const ItemDetailsOptions = ({ parseOptions, currentPrice, setCurrentPrice, setSelectOption, setCountItem}) => {
+const dispatch = useDispatch();
 
-  const handleChangeOption = (e) => {
+  const handleChangeOption =  (e) => {
     const {value} = e.target;
     setSelectOption(value);
-    // setCurrentPrice(price);
+   const priceOption = parseOptions.flatMap(item => item.options.find(item => item.name === value));
+    setCurrentPrice(() => {
+      if(priceOption[0]?.price){
+      return  priceOption[0]?.price
+      }else{
+        return currentPrice;
+      }
+    });
+    setCountItem(1)
+    dispatch(setCount(1))
   }
 
   return (
-    <div className="w-full flex flex-col gap-[15px] mt-[30px] mb-[42px]">
+    <div className="w-full flex flex-col gap-[15px] mt-[15px] tb:mt-[30px]  mb-[17px] tb:mb-[42px]">
       {parseOptions?.map(({ name, options }) => {
-        return  <div className="flex items-center relative justify-between" key={name}>
-        <h3 className="text-[16px] text-[#484848] font-bold tracking-[0.32px]">{name}</h3>
+        return  <div className="flex flex-col tb:flex-row gap-[5px] tb:items-center relative justify-between" key={name}>
+        <h3 className="text-[14px] font-semibold tb:text-[16px] text-[#484848] tb:font-bold tracking-[0.32px]">{name}</h3>
         <div>
-        <select onChange={handleChangeOption} className={`bg-transparent py-[10px] px-[15px] border border-solid border-[#7FAA84] rounded-[5px] w-[225px] outline-none`}>
+        <select onChange={handleChangeOption} className={`bg-[#EAF2EB] tb:bg-transparent py-[10px] px-[15px] tb:border tb:border-solid tb:border-[#7FAA84] rounded-[5px] w-full tb:w-[225px] outline-none`}>
          {options?.map(item => {
-         return <option value={item.name}>{item.name}</option>
+         return <option key={item.optionId} value={item.name}>{item.name}</option>
          })}
           </select>
         </div>

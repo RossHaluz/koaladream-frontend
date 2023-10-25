@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'https://koaladream.onrender.com';
 
 const setAuthToken = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`

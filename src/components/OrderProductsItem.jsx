@@ -3,9 +3,8 @@ import { LiaPlusSolid } from "react-icons/lia";
 import { RxCross2 } from "react-icons/rx";
 
 const OrderProductsItem = ({item}) => {
-
-    const {image, title, price, oldPrice} = item;
-
+    const {image, title, price, oldPrice, count} = item;
+console.log(item);
   return <li className="flex items-center gap-[30px]">
     <button type="button">
     <RxCross2 className="min-w-[24px] max-w-[24px] min-h-[24px] max-h-[24px]"/>
@@ -15,7 +14,7 @@ const OrderProductsItem = ({item}) => {
         <h3 className="text-[16px] font-bold tracking-[0.64px] underline line-clamp-2">{title}</h3>
 
         <div className="flex items-center gap-[10px]">
-            <span>1</span>
+            <span>{count}</span>
             <RxCross2 className="w-[10px] h-[10px]"/>
 
             <div className="flex items-center gap-[7px]">
@@ -32,7 +31,7 @@ const OrderProductsItem = ({item}) => {
 
   <div className='w-[1px] h-10 bg-[#7FAA84]'></div>
   
-  <div className='py-[5px] w-[30px] flex items-center justify-center'>1</div>
+  <div className='py-[5px] w-[30px] flex items-center justify-center'>{count}</div>
 
   <div className='w-[1px] h-10 bg-[#7FAA84]'></div>
 

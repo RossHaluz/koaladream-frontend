@@ -12,9 +12,9 @@ const ItemDetailsDesc = ({desc, parseCharacteristics, article, care}) => {
   const activeDesc =  descOptions[activeIndex];
 
   return (
-    <div className='flex flex-col gap-[30px]'>
+    <div className='flex flex-col gap-[15px] tb:gap-[30px]'>
       <div className="flex flex-col gap-[10px]">
-        <ul className="flex items-center justify-between">
+        <ul className="flex items-center gap-[30px] overflow-x-auto  justify-between">
           {descOptions.map((item, index) => {
             return (
                 <ItemDetailsDescItem

@@ -16,12 +16,12 @@ const removeItem = (itemId) => {
     dispatch(removeUserContactDetails())
 }
 
-  return <div className="pt-[30px] pb-[40px]">
+  return <div className="hidden tb:block pt-[30px] pb-[40px]">
     {items.length > 0 ? <><div className="flex flex-col gap-[30px]">
 
 <div className=''>
   <ul className="flex flex-col gap-[10px]">
-    {items?.map(({ image, title, price, oldPrice, article, id }) => {
+    {items?.map(({ image, title, price, oldPrice, article, id, count }) => {
       return (
         <li className="bg-[#EAF2EB] overflow-hidden rounded-[5px]">
              <div className="flex items-center justify-between">
@@ -34,7 +34,7 @@ const removeItem = (itemId) => {
 
           <div className='flex flex-col gap-[12px] py-[10px]'>
             <div className="flex flex-col gap-[10px]">
-              <h2 className="text-[16px] font-bold tracking-[0.64px] underline line-clamp-1">
+              <h2 className="text-[16px] font-bold tracking-[0.64px] underline line-clamp-2">
                 {title}
               </h2>
               <h3 className="text-[12px]">Артикул: {article}</h3>
@@ -56,7 +56,7 @@ const removeItem = (itemId) => {
 
 <div className='w-[1px] h-10 bg-[#7FAA84]'></div>
 
-<div className='p-[6px] w-[40px] flex items-center justify-center text-[16px] font-medium tracking-[0.32px]'>1</div>
+<div className='p-[6px] w-[40px] flex items-center justify-center text-[16px] font-medium tracking-[0.32px]'>{count}</div>
 
 <div className='w-[1px] h-10 bg-[#7FAA84]'></div>
 

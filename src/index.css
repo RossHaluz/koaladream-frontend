@@ -18,6 +18,21 @@ font-weight: 400;
   font-family: 'Montserrat', sans-serif;
 }
 
+.swiper-pagination-bullet{
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 10px;
+  opacity: 1 !important;
+  background: none !important;
+  border: 1px solid #7FAA84;
+  font-weight: bold;
+}
+.swiper-pagination-bullet-active{
+  background: #7FAA84 !important;
+}
+
 @layer components {
   .container { 
     @apply max-w-[2560px]

@@ -40,25 +40,25 @@ const ItemDetailsReviewsForm = () => {
     }
 
   return <div>
-    <h3 className="mb-[30px] text-[16px] font-medium tracking-[0.32px] leading-[24px]">Залиште свій відгук</h3>
+    <h3 className="mb-[15px] tb:mb-[30px] text-[16px] font-medium tracking-[0.32px] leading-[24px]">Залиште свій відгук</h3>
     <Formik
     initialValues={initialValues}
     onSubmit={onSubmit}
     validationSchema={validationSchema}
     >
-        <Form className="flex flex-col gap-[30px]">
-            <div className="flex flex-col gap-[15px] mb-[30px]">
-            <label className="flex flex-col gap-[10px] text-[16px] font-medium tracking-[0.32px] leading-[24px]">
+        <Form className="flex flex-col gap-[15px] tb:gap-[30px]">
+            <div className="flex flex-col gap-[30px] tb:gap-[15px] tb:mb-[30px]">
+            <label className="flex flex-col gap-[10px] tb:text-[16px] font-medium tracking-[0.32px] leading-[24px]">
             Ваше імʼя*
             <Field name='name' className='border border-solid border-[#7FAA84] rounded-[5px] p-[15px] h-[40px] bg-transparent' />
             </label>
 
-            <label className="flex flex-col gap-[10px] text-[16px] font-medium tracking-[0.32px] leading-[24px]">
+            <label className="flex flex-col gap-[10px] tb:text-[16px] font-medium tracking-[0.32px] leading-[24px]">
             Ваш Email*
             <Field name='email' className='border border-solid border-[#7FAA84] rounded-[5px] p-[15px] h-[40px] bg-transparent' />
             </label>
 
-           <div className="flex items-center gap-[30px]">
+           <div className="flex items-center justify-between tb:justify-normal tb:gap-[30px]">
             <h3>Ваша оцінка*</h3>
            <ReactStars 
             count={5}
@@ -69,13 +69,13 @@ const ItemDetailsReviewsForm = () => {
            </div>
             </div>
 
-            <div className="flex flex-col gap-[30px]">
-                <label className="flex flex-col gap-[10px] text-[16px] font-medium tracking-[0.32px] leading-[24px]">
+            <div className="flex flex-col gap-[15px] tb:gap-[30px]">
+                <label className="flex flex-col gap-[10px] tb:text-[16px] font-medium tb:tracking-[0.32px] tb:leading-[24px]">
                 Ваш відгук*
                 <Field name='response' as='textarea' className='border border-solid border-[#7FAA84] rounded-[5px] p-[15px] h-[160px] resize-none bg-transparent' />
                 </label>
 
-                <div className="flex flex-col gap-[15px]">
+                <div className="flex flex-col tb:gap-[15px]">
                 <input type="file" multiple className="hidden" ref={selectRef} onChange={handleSelectFile} />
                 <button type="button" onClick={() => selectRef.current.click()} className="flex items-center gap-[10px] text-[#7FAA84]">
                     <svg className="w-[24px] h-[24px]">

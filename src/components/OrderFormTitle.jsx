@@ -10,7 +10,7 @@ const userContactDetails = useSelector(selectUserContactDetails);
   <div className="border border-solid border-[#7faa84]/[.50] w-[30px] h-[30px] rounded-[50%] flex justify-center items-center">
       {number}
   </div>
-  <h3 className="font-bold text-[24px]">{title}</h3>
+  <h3 className="font-bold text-[16px] tb:text-[24px]">{title}</h3>
 </div>
 
 {userContactDetails && setIsOpen &&  <svg className={`w-[24px] h-[24px] ${isOpen && 'rotate-180'}`} fill='none' stroke='#7FAA84'>

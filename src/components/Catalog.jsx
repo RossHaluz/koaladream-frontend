@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import Categories from './Categories';
 import icons from './img/icons/icons.svg';
+import { getCategories } from 'redux/categories/operetions';
+import { useDispatch } from 'react-redux';
 
 const Catalog = () => {
+  const dispatch = useDispatch();
 const [showCategories, setShowCategories] = useState(false);
 let categories = false;
 
@@ -11,6 +14,7 @@ const onMouseCategories = () => {
   if(Categories){ 
     categories = true
   }
+  dispatch(getCategories())
 }
 
 const onMouseLeaveCategories = () => {

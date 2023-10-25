@@ -2,11 +2,11 @@ import { useDispatch } from "react-redux"
 import { addItemToCart } from "redux/order/slice";
 import { toast } from "react-toastify";
 
-const ItemDetailsBtn = ({title, image, price, article, oldPrice, id}) => {
+const ItemDetailsBtn = ({title, image, price, article, oldPrice, id, count}) => {
 const dispatch = useDispatch();
 
 const handleAddItem = () => {
-  dispatch(addItemToCart({title, image, price, article, oldPrice, id}))
+  dispatch(addItemToCart({title, image, price, article, oldPrice, id, count}))
   toast.success('Item add to cart', {
     position: "top-right",
     autoClose: 5000})

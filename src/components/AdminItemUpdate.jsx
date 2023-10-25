@@ -15,7 +15,8 @@ import { selectOptions } from "redux/options/selectors";
 const AdminItemUpdate = ({item}) => {
 
     const {title, desc, images, price, oldPrice, care, characteristics, status, categoryName, article, options, filters, hitSales, _id: itemId} = item;
-    
+    console.log(filters);
+
     const dispatch = useDispatch();
     const categories = useSelector(selectCategiries);
     const allOptions = useSelector(selectOptions);
@@ -25,13 +26,11 @@ const AdminItemUpdate = ({item}) => {
     const [chooseFilters, setChooseFilters] = useState(JSON.parse(filters));
     const [chooseFilterOptions, setChooseFilterOptions] = useState(JSON.parse(filters).flatMap(item => item.options));
     const [currentImg] = useState(images.map(item => item));
-    const [currentDesc, setCurrentDesc] = useState(null)
-    const [currentCare, setCurrentCare] = useState(null);
     const [selectFile, setSelectFile] = useState(null);
     const fileRef = useRef();
     const navigate = useNavigate();
 
-    console.log(currentImg);
+    console.log(chooseFilterOptions);
 
     const handleChangeOption = e => {
        const {value, checked, attributes} = e.target;
@@ -305,7 +304,7 @@ const AdminItemUpdate = ({item}) => {
           </label>
           {chooseFilters.find(item => item.name === name) && filterValue?.map(({name}, idx) => {
              return <label className="flex items-center gap-[10px]">
-                <Field name={`${allFilters}[${idx}].${name}`} filter_val={id} checked={chooseFilterOptions.find(item => item === name)} value={name} type='checkbox'  onChange={handleChangeFilterOptions}/>
+                <Field name={`${allFilters}[${idx}].${name}`} filter_val={id} checked={chooseFilterOptions.find(item => item.name === name)} value={name} type='checkbox'  onChange={handleChangeFilterOptions}/>
              <h3 className="text-[16px] font-medium">{name}</h3>
              </label>
           })}

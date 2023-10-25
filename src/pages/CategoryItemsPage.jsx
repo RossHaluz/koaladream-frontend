@@ -21,7 +21,7 @@ useEffect(() => {
 
   return <>
   <Breadcrumbs/>
-  {items.length > 0 &&  <CategoryItemsList category={category} items={items} setCurrentPage={setCurrentPage} getPage={getPage}/>}
+  <CategoryItemsList category={category} items={items} setCurrentPage={setCurrentPage} getPage={getPage}/>
   </>
 }
 

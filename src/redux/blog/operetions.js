@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'https://koaladream.onrender.com';
 
 export const getAllPosts = createAsyncThunk('api/getAllPosts', async(__, {rejectWithValue}) => {
     try {

@@ -14,7 +14,7 @@ const CategoryItemsItem = ({
   return (
     <li className="w-full border border-solid border-[#484848]/[.20] rounded-[5px]">
       <Link to={`/${category}/${id}`}>
-        <img src={images[0]} alt={title} className="w-full h-[253px]" />
+        <img src={images?.length > 0 && images[0]} alt={title} className="w-full h-[253px]" />
       </Link>
       <div className="px-[15px] pt-[20px] pb-[15px]">
         <div className="flex flex-col gap-[13px] mb-[25px]">

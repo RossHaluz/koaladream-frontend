@@ -5,9 +5,12 @@ import Pagination from './Pagination';
 import icons from './img/icons/icons.svg';
 import { selectTotalPages } from 'redux/items/selectors';
 import Filter from './Filter';
+import FiltersMobile from './FiltersMobile';
+import { useState } from 'react';
 
 const CategoryItemsList = ({ category, items, setCurrentPage, getPage }) => {
   const totalPages = useSelector(selectTotalPages);
+  const [isOpenFilter, setIsOpenFilter] = useState(false)
 
   return (
     <>
@@ -16,6 +19,7 @@ const CategoryItemsList = ({ category, items, setCurrentPage, getPage }) => {
       </h1>
       <div className="mb-[20px] grid grid-cols-2 tb:grid-cols-4 gap-[15px] lg:hidden">
         <button
+        onClick={() => setIsOpenFilter(true)}
           type="button"
           className="flex gap-[15px] items-center justify-center bg-[#EAF2EB] rounded-[5px] px-[36px] py-[8px]"
         >
@@ -68,10 +72,11 @@ const CategoryItemsList = ({ category, items, setCurrentPage, getPage }) => {
           <h2>На жаль товарів не знайдено</h2>
         )}
       </div>
-      {/* <LeadMoreBtn setCurrentPage={setCurrentPage} getPage={getPage}/> */}
-      {totalPages && (
+
+      {totalPages > 12 &&  (
         <Pagination setCurrentPage={setCurrentPage} getPage={getPage} />
       )}
+      {isOpenFilter && <FiltersMobile setIsOpenFilter={setIsOpenFilter}/>}
     </>
   );
 };

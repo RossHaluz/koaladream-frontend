@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { getAllFilters } from 'redux/filter/operetions';
 import { selectFilter } from 'redux/filter/selectors';
 import { filterItems } from 'redux/items/operetions';
@@ -10,36 +10,27 @@ const Filter = () => {
   const filters = useSelector(selectFilter);
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentFilters, setCurrentFilters] = useState([]);
-  const getSearchParams = searchParams.get('filters');
-
-  // const arrayOfStrings = getSearchParams.split(','); 
-  // const trimmedArray = arrayOfStrings.map(str => str.trim()); 
+  const getSearchParams = searchParams.get('filters') ?? '';
+  const {category} = useParams();
   
-  const onChangeFilter = e => {
-    const { checked, value } = e.currentTarget;
-
-    setCurrentFilters(prev => {
-      if (checked) {
-        return [value, ...prev];
-      } else {
-        return prev.filter(item => item !== value);
-      }
-    });
-
+  const onChangeFilter = (e) => {
+    const { checked, value } = e.target;
+    if(checked){
+     return setCurrentFilters(prev => [value, ...prev])
+    }else{
+      setCurrentFilters(currentFilters?.filter(item => item !== value))
+    }
   };
 
   useEffect(() => {
-    if(currentFilters.length === 0){
-      return;
-    }
-    setSearchParams({
-      filters: currentFilters.join(','),
-    });
+    setSearchParams(currentFilters.length > 0 ? {
+      filters: currentFilters?.join(',')
+    } : {});
   }, [currentFilters, setSearchParams])
 
   useEffect(() => {
     dispatch(getAllFilters());
-    dispatch(filterItems(getSearchParams))
+    dispatch(filterItems({getSearchParams, category}))
   }, [dispatch, getSearchParams]);
 
   return (

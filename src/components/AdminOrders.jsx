@@ -32,7 +32,7 @@ const AdminOrders = ({ orders }) => {
           </tr>
         </thead>
         <tbody>
-          {orders?.map(({ _id: id, firstName, lastName, dateAdded }) => {
+          {orders?.map(({ _id: id, firstName, lastName, dateAdded, status}) => {
             const day = new Date(dateAdded).getDate();
             const month = new Date(dateAdded).getMonth();
             const year = new Date(dateAdded).getFullYear();
@@ -44,7 +44,7 @@ const AdminOrders = ({ orders }) => {
                   {firstName} {lastName}
                 </td>
                 <td className="border border-solid border-[#343a40] p-[10px]">
-                  Order processed
+                 {status}
                 </td>
                 <td className="border border-solid border-[#343a40] p-[10px]">{`${day}/${
                   month < 10 ? '0' + month : month

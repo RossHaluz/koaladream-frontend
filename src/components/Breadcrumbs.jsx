@@ -1,9 +1,7 @@
-import { useLocation } from "react-router-dom"
+// import { useLocation } from "react-router-dom"
 
 const Breadcrumbs = () => {
-const location = useLocation();
-console.log(location);
-console.log(decodeURIComponent(location.pathname));
+// const location = useLocation();
 
   return (
     <div>

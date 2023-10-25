@@ -5,8 +5,8 @@ import { useState } from "react";
 const AdminOrderUpdate = ({order}) => {
     const [isDepartment, setIsDepartment] = useState(true);
     const [isAddress, setIsAddress] = useState(false);
-    const {address, city, department, email, firstName, lastName, items, payment, phone, postalService} = order;
-
+    const {address, city, department, email, firstName, lastName, items, payment, phone, postalService, status} = order;
+console.log(status);
     const handleDepartment = () => {
         setIsDepartment(true);
         setIsAddress(false);
@@ -27,7 +27,8 @@ const AdminOrderUpdate = ({order}) => {
         items: items,
         payment: payment,
         phone: phone,
-        postalService: postalService
+        postalService: postalService,
+        status: status
     }
 
     const onSubmit = (values, {resetForm}) => {
@@ -187,6 +188,19 @@ const AdminOrderUpdate = ({order}) => {
        <div className="flex flex-col gap-[15px]">
        <AdminOrderTitle number={4} title={'Коментар до замовлення'}/>
        <Field name='comment' placeholder='Введіть коментар' className='py-[15px] px-[15px] border border-s border-[#7FAA84] rounded-[5px] text-[16px] font-medium leading-[24px] tracking-[0.32px] text-[#484848]/[.50] bg-transparent w-[406px]'/>
+       </div>
+
+       <div className="flex flex-col gap-[15px]">
+       <AdminOrderTitle number={5} title={'Статус замовлення'}/>
+       <Field
+                    as="select"
+                    name="status"
+                    className="bg-transparent border w-[406px] border-s border-[#7FAA84] rounded-[5px] py-[8px] px-[15px] text-[16px] font-medium leading-[24px] tracking-[0.32px] outline-none text-[#484848]/[.50]"
+                  >
+                    <option value="Очікування">Очікування</option>
+                    <option value="В обробці менеджера">В обробці менеджера</option>
+                    <option value="Замовлення оброблене">Замовлення оброблене</option>
+                  </Field>
        </div>
 
        <button type="submit" className='px-[25px] py-[15px] bg-[#7FAA84] rounded-[5px] text-[#fff] text-[16px] font-semibold tracking-[0.32px] w-[259px]'>Зберегти зміни</button>

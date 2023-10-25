@@ -6,10 +6,16 @@ import icons from './img/icons/icons.svg';
 import { Link } from "react-router-dom";
 import { isOpenCatalog } from "redux/categories/slice";
 import { openMenu } from "redux/mobileMenu/slice";
+import { useEffect } from "react";
+import { getCategories } from "redux/categories/operetions";
 
 const CategoriesMobile = () => {
 const categories = useSelector(selectCategiries);
 const dispatch = useDispatch();
+
+useEffect(() => {
+    dispatch(getCategories())
+}, [dispatch])
 
   return <div className="fixed top-0 left-0 z-20 w-full h-full overflow-y-auto bg-[#F5FAF6] container">
      <div className="flex justify-center mb-[12px]" onClick={() => {dispatch(openMenu(false)); dispatch(isOpenCatalog(false))}}>
