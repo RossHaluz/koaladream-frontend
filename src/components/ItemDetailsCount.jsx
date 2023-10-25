@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AiOutlineMinus } from 'react-icons/ai';
 import { LiaPlusSolid } from 'react-icons/lia';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,13 +18,14 @@ const ItemDetailsCount = ({
 
   useEffect(() => {
     const setPrice = parseOptions
-      ?.map(item => item?.options?.find(item => typeof selectOption === Array ? selectOption?.map(option => option === item.name) : selectOption === item.name))
+      ?.map(item => item?.options?.find(item => Array.isArray(selectOption) ? selectOption.includes(item.name) : selectOption === item.name))
       .map(item => item?.price);
-      console.log(setPrice);
+  
     const countPrice = countItem * setPrice[0];
-    console.log(countPrice);
     setCurrentPrice(countPrice);
-  }, [count]);
+  
+    // Отже, додайте всі залежності до масиву залежностей useEffect
+  }, [countItem, parseOptions, selectOption, setCurrentPrice]);
 
   const onPlusCount = () => {
     setCountItem(prev => prev + 1);

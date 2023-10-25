@@ -10,7 +10,7 @@ const orders = useSelector(selectOrders);
 
   useEffect(() => {
     dispatch(getOrders())
-  }, [orders])
+  }, [orders, dispatch])
 
   return <>{orders.length > 0 && <AdminOrders orders={orders}/>}</>;
 };

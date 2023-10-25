@@ -31,7 +31,7 @@ const Filter = () => {
   useEffect(() => {
     dispatch(getAllFilters());
     dispatch(filterItems({getSearchParams, category}))
-  }, [dispatch, getSearchParams]);
+  }, [dispatch, getSearchParams, category]);
 
   return (
     <div className="flex flex-col gap-[20px] xs:hidden lg:flex">

@@ -23,7 +23,7 @@ const ItemDetails = ({ item }) => {
 useEffect(() => {
   setSelectOption(parseOptions.map(item => item.options.map(item => item.name)[0]));
   setCurrentPrice(parseOptions[0]?.options[0]?.price)
-}, [])
+}, [parseOptions])
 
 
 
@@ -46,7 +46,7 @@ useEffect(() => {
 
 <div className='tb:hidden block w-full h-[1px] bg-[#7FAA84] mt-[15px]'></div>
 
-<ItemDetailsOptions parseOptions={parseOptions} currentPrice={currentPrice} setCount={setCount} setCurrentPrice={setCurrentPrice} setSelectOption={setSelectOption} selectOption={selectOption} currentPrice={currentPrice} price={price} setCountItem={setCountItem}/>
+<ItemDetailsOptions parseOptions={parseOptions} currentPrice={currentPrice} setCount={setCount} setCurrentPrice={setCurrentPrice} setSelectOption={setSelectOption} selectOption={selectOption} price={price} setCountItem={setCountItem}/>
 
 <div className='hidden tb:block w-full h-[1px] bg-[#7FAA84] mb-[30px]'></div>
 

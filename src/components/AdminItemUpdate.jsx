@@ -89,7 +89,7 @@ const AdminItemUpdate = ({item}) => {
        if(checked){
           setChooseFilters(prev => [...prev, {name: value, filterId: filterId, options: chooseFilters}]);
        }else{
-          setChooseFilters(chooseFilters.filter(item => item .name!== value))
+          setChooseFilters(chooseFilters.filter(item => item.name!== value))
        }
     }
  

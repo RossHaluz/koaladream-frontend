@@ -33,7 +33,7 @@ const FiltersMobile = ({setIsOpenFilter}) => {
     useEffect(() => {
       dispatch(getAllFilters());
       dispatch(filterItems({getSearchParams, category}))
-    }, [dispatch, getSearchParams]);
+    }, [dispatch, getSearchParams, category]);
 
     const closeFilterBackdrop = (e) => {
         if(e.target !== e.currentTarget){
