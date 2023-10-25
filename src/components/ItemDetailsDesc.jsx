@@ -14,7 +14,7 @@ const ItemDetailsDesc = ({desc, parseCharacteristics, article, care}) => {
   return (
     <div className='flex flex-col gap-[15px] tb:gap-[30px]'>
       <div className="flex flex-col gap-[10px]">
-        <ul className="flex items-center gap-[30px] overflow-x-auto  justify-between">
+        <ul className="flex items-center gap-[30px] overflow-x-auto overflow-y-hidden justify-between">
           {descOptions.map((item, index) => {
             return (
                 <ItemDetailsDescItem
