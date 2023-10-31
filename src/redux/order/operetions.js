@@ -3,7 +3,7 @@ import axios from "axios";
 
 // http://localhost:8001
 // https://koaladream.onrender.com
-axios.defaults.baseURL = 'http://localhost:8001';
+axios.defaults.baseURL = 'https://koaladream.onrender.com';
 
 export const createNewOrder = createAsyncThunk('api/createNewOrder', async(params, {rejectWithValue}) => {
     try {
