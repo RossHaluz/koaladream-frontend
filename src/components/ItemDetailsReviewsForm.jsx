@@ -25,7 +25,7 @@ const ItemDetailsReviewsForm = () => {
 
     const initialValues = {
         name: user?.userName ? user?.userName : '',
-        email: user.email ? user?.email : '',
+        email: user?.email ? user?.email : '',
         review: '',
     }
 
