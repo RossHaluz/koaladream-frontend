@@ -2,8 +2,6 @@ import ReactStars from "react-rating-stars-component";
 
 const ReviewStars = ({rating}) => {
 
-  console.log(rating);
-
   return <ReactStars
   count={5}
   value={rating}

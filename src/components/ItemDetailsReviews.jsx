@@ -61,10 +61,7 @@ const ItemDetailsReviews = () => {
               reviews.length > 0 &&
               !isLoading &&
               reviews?.map(item => {
-                if(!item){
-                  return null
-                }
-              
+                if(item){
                   const {
                     _id: id,
                     review,
@@ -109,7 +106,8 @@ const ItemDetailsReviews = () => {
                       </div>
                     </div>
                   );
-                
+                }
+                return null
               })}
           </div>
           <div className="flex flex-col gap-[30px] mt-[30px]" id="form">
