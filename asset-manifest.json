@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/koaladream-frontend/static/css/main.c7bedd1c.css",
-    "main.js": "/koaladream-frontend/static/js/main.0a0f60de.js",
-    "static/js/767.f4f3ae7f.chunk.js": "/koaladream-frontend/static/js/767.f4f3ae7f.chunk.js",
+    "main.js": "/koaladream-frontend/static/js/main.f0419050.js",
+    "static/js/767.5431b97d.chunk.js": "/koaladream-frontend/static/js/767.5431b97d.chunk.js",
     "static/js/110.706034fa.chunk.js": "/koaladream-frontend/static/js/110.706034fa.chunk.js",
     "static/css/506.efeb5e7c.chunk.css": "/koaladream-frontend/static/css/506.efeb5e7c.chunk.css",
-    "static/js/506.fb61ab6a.chunk.js": "/koaladream-frontend/static/js/506.fb61ab6a.chunk.js",
+    "static/js/506.20b1f7fa.chunk.js": "/koaladream-frontend/static/js/506.20b1f7fa.chunk.js",
     "static/js/615.a5a786c1.chunk.js": "/koaladream-frontend/static/js/615.a5a786c1.chunk.js",
     "static/js/446.db04a706.chunk.js": "/koaladream-frontend/static/js/446.db04a706.chunk.js",
     "static/js/193.cfe4ac74.chunk.js": "/koaladream-frontend/static/js/193.cfe4ac74.chunk.js",
@@ -43,11 +43,11 @@
     "index.html": "/koaladream-frontend/index.html",
     "static/media/slick.woff": "/koaladream-frontend/static/media/slick.295183786cd8a1389865.woff",
     "main.c7bedd1c.css.map": "/koaladream-frontend/static/css/main.c7bedd1c.css.map",
-    "main.0a0f60de.js.map": "/koaladream-frontend/static/js/main.0a0f60de.js.map",
-    "767.f4f3ae7f.chunk.js.map": "/koaladream-frontend/static/js/767.f4f3ae7f.chunk.js.map",
+    "main.f0419050.js.map": "/koaladream-frontend/static/js/main.f0419050.js.map",
+    "767.5431b97d.chunk.js.map": "/koaladream-frontend/static/js/767.5431b97d.chunk.js.map",
     "110.706034fa.chunk.js.map": "/koaladream-frontend/static/js/110.706034fa.chunk.js.map",
     "506.efeb5e7c.chunk.css.map": "/koaladream-frontend/static/css/506.efeb5e7c.chunk.css.map",
-    "506.fb61ab6a.chunk.js.map": "/koaladream-frontend/static/js/506.fb61ab6a.chunk.js.map",
+    "506.20b1f7fa.chunk.js.map": "/koaladream-frontend/static/js/506.20b1f7fa.chunk.js.map",
     "615.a5a786c1.chunk.js.map": "/koaladream-frontend/static/js/615.a5a786c1.chunk.js.map",
     "446.db04a706.chunk.js.map": "/koaladream-frontend/static/js/446.db04a706.chunk.js.map",
     "193.cfe4ac74.chunk.js.map": "/koaladream-frontend/static/js/193.cfe4ac74.chunk.js.map",
@@ -74,6 +74,6 @@
   },
   "entrypoints": [
     "static/css/main.c7bedd1c.css",
-    "static/js/main.0a0f60de.js"
+    "static/js/main.f0419050.js"
   ]
 }
