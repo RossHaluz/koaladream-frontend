@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://koaladream.onrender.com';
-
 const setAuthToken = token => {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
 }
@@ -15,6 +13,7 @@ export const registerUser = createAsyncThunk('api/registerUser', async(params, {
     console.log(params);
     try {
         const {data} = await axios.post('/api/user/register', params);
+        console.log(data);
         setAuthToken(data.newUser.token);
         return data.newUser;
     } catch (error) {

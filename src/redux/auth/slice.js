@@ -29,7 +29,6 @@ const authSlice = createSlice({
             state.isLoading = true;
         },
         [registerUser.fulfilled](state, action) {
-            console.log(action.payload);
             state.isLoading = false;
             state.user = action.payload;
             state.userContactDetails = action.payload;
@@ -51,6 +50,7 @@ const authSlice = createSlice({
         [loginUser.fulfilled](state, action){
             state.isLoading = false;
             state.user = action.payload;
+            state.userContactDetails = action.payload;
             state.token = action.payload.token;
             state.isLoging = true;
             state.isRefreshing = true;

@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createNewOrder, deleteOrder, getOrders, getOrder } from "./operetions";
+import { createNewOrder, deleteOrder, getOrders, getOrder, getOrdersUser } from "./operetions";
 
 const initialState = {
     orders: [],
     orderItems: [],
     order: null,
     isLoading: false,
-    dataFromOrder: null
+    dataFromOrder: null,
+    userOrders: null
 }
 
 const orderSlice = createSlice({
@@ -31,6 +32,7 @@ const orderSlice = createSlice({
         state.isLoading = true;
       },
       [createNewOrder.fulfilled](state, action){
+        console.log(action.payload);
         state.isLoading = false;
         state.orders.push(action.payload);
       },
@@ -54,6 +56,13 @@ const orderSlice = createSlice({
       [getOrder.fulfilled](state, action){
         state.isLoading = false;
         state.order = action.payload;
+      },
+      [getOrdersUser.pending](state, action){
+        state.isLoading = true;
+      },
+      [getOrdersUser.fulfilled](state, action){
+        state.isLoading = false; 
+        state.userOrders = action.payload;
       }
     }
 })

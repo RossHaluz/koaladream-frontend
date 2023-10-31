@@ -25,8 +25,6 @@ const AdminAddItemForm = () => {
   const fileRef = useRef();
   const navigate = useNavigate();
 
-  console.log(selectedOptions);
-
   const handleChangeOption = e => {
     const { value, checked, attributes } = e.target;
     const optionId = attributes.opt_val.value;

@@ -10,6 +10,7 @@ import icons from './img/icons/icons.svg';
 const CartMobile = () => {
     const items = useSelector(selectOrderItems);
     const dispatch = useDispatch();
+    console.log(items);
     
     const removeItem = (itemId) => {
         dispatch(removeItemFromCart(itemId))
@@ -17,8 +18,9 @@ const CartMobile = () => {
     }
 
   return (
-    <div className="pt-[18px] pb-[30px] flex flex-col gap-[30px] tb:hidden">
-      <div className="flex flex-col gap-[15px]">
+ 
+ <div className="pt-[18px] pb-[30px] flex flex-col gap-[30px] tb:hidden">
+    {items?.length > 0 ?  <div className="flex flex-col gap-[15px]">
       <h2 className="text-[16px] tracking-[0.64px] font-bold">Кошик</h2>
 
       <div className="p-[15px] rounded-[5px] shadow-[2px_2px_5px_0px_rgba(127,170,132,0.50),_-2px_-2px_5px_0px_rgba(120,171,126,0.50)]">
@@ -62,13 +64,16 @@ const CartMobile = () => {
            </ul>
         </div>
       </div>
-      </div>
+      </div> : <div className="py-[80px] flex flex-col gap-[15px]">
+        <h3 className="text-center font-semibold">Ваш кошик порожній</h3>
+      <div className="h-[1px] bg-[#484848]/[.30] w-[305px]"></div>
+        </div>}
 
       <div className="flex flex-col gap-[15px] justify-center">
-        <NavLink to='/order' className='py-[15px] px-[25px] bg-[#7FAA84] rounded-[5px] text-[#fff] font-semibold flex justify-center items-center w-[228px] mx-auto'>Оформити замовлення</NavLink>
+        <NavLink to={items?.length > 0 ? '/order' : '/'} className='py-[15px] px-[25px] bg-[#7FAA84] rounded-[5px] text-[#fff] font-semibold flex justify-center items-center w-[228px] mx-auto'>{items?.length > 0 ? 'Оформити замовлення' : 'На головну'}</NavLink>
         <NavLink to='/' className='py-[15px] px-[25px] border border-s border-[#7FAA84] rounded-[5px] text-[#484848] font-semibold flex justify-center items-center w-[228px] mx-auto'>Продовжити покупки</NavLink>
       </div>
-    </div>
+    </div> 
   )
 }
 

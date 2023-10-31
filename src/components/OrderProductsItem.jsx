@@ -4,7 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 
 const OrderProductsItem = ({item}) => {
     const {image, title, price, oldPrice, count} = item;
-console.log(item);
+    
   return <li className="flex items-center gap-[30px]">
     <button type="button">
     <RxCross2 className="min-w-[24px] max-w-[24px] min-h-[24px] max-h-[24px]"/>

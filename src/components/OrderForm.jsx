@@ -4,17 +4,22 @@ import { useState } from 'react';
 import { BsCheckLg } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserContactDetails } from 'redux/auth/selectors';
-import { createNewOrder } from 'redux/order/operetions';
+import { createNewOrder, getOrders } from 'redux/order/operetions';
 import { useNavigate } from 'react-router-dom';
 import { removeItemsFromCart, setDataFromOrder } from 'redux/order/slice';
+import { removeUserContactDetails } from 'redux/auth/slice';
+import {selectOrders} from '../redux/order/selectors';
+import { selectIsLoging } from 'redux/auth/selectors';
 
 const OrderForm = ({items}) => {
   const [isDepartment, setIsDepartment] = useState(true);
   const [isAddress, setIsAddress] = useState(false);
   const [checked, setChecked] = useState(false);
   const {firstName, lastName, phone, email} = useSelector(selectUserContactDetails);
+  const isLoging = useSelector(selectIsLoging);
 const dispatch = useDispatch();
 const navigate = useNavigate();
+const orders = useSelector(selectOrders);
 
   const handleDepartment = () => {
     setIsDepartment(true);
@@ -40,9 +45,14 @@ const navigate = useNavigate();
 
   const onSubmit =  (value, { resetForm }) => {
   const dateAdded = new Date();
-   dispatch(createNewOrder({...value, dateAdded, items}));
-   dispatch(setDataFromOrder({...value, dateAdded, items}))
+  dispatch(getOrders());
+  const numberOrder = orders.length + 1;
+   dispatch(createNewOrder({...value, dateAdded, items, numberOrder}));
+   dispatch(setDataFromOrder({...value, dateAdded, items, numberOrder}))
    dispatch(removeItemsFromCart())
+   if(!isLoging) {
+    dispatch(removeUserContactDetails())
+   }
    navigate('/success-order')
     resetForm();
   };

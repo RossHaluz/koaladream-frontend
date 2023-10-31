@@ -1,11 +1,8 @@
 import React from 'react'
 
-const ReviewsText = () => {
+const ReviewsText = ({review}) => {
   return <p className='text-[12px]'>
-    Дуже шикарний домашній текстиль! Дякую за 
-гарну якість та гарні сни!  Дуже шикарний 
-домашній текстиль! Дякую за гарну якість та гарні 
-сни!
+{review}
   </p>
 }
 

@@ -4,7 +4,7 @@ const OrderProducts = ({items}) => {
   return <>{items.length > 0 && <div className="p-[30px] bg-[#EAF2EB] sticky top-[10px] hidden bg:flex flex-col gap-[30px] rounded-[5px]">
     <h3 className="text-[24px] font-bold">Ваш кошик</h3>
     <ul className="flex flex-col gap-[15px]">
-    {items?.map(item => <OrderProductsItem item={item}/>)}
+    {items?.map(item => <OrderProductsItem key={item.id} item={item}/>)}
     </ul>
     <div className="w-full h-[1px] bg-[#7faa84]/[.50]"></div>
 

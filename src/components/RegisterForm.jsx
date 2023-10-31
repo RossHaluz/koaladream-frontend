@@ -33,7 +33,9 @@ const RegisterForm = ({setLogin, setRegister}) => {
       };
     
       const onSubmit = (value, { resetForm }) => {
-       dispatch(registerUser(value));
+        const {userName, email, password} = value;
+
+       dispatch(registerUser({userName, email, password}));
        navigate('acount');
         resetForm();
       };

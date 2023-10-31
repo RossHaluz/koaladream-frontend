@@ -11,7 +11,6 @@ const filterSlice = createSlice({
     reducers:{},
     extraReducers:{
         [getAllFilters.fulfilled](state, action){
-            console.log(action.payload);
             state.filters = action.payload;
         }
     }

@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const SuccessOrder = () => {
 const dataFromOrder = useSelector(selectDataFromOrder);
 
-    const {postalService, city = '', department = '', payment = '', lastName = '', firstName = '', phone = '', email = ''} = dataFromOrder;
+    const {postalService, city = '', department = '', payment = '', lastName = '', firstName = '', phone = '', email = '', numberOrder} = dataFromOrder;
 
   return (
     <div className='py-[30px]'>
@@ -17,7 +17,7 @@ const dataFromOrder = useSelector(selectDataFromOrder);
 
 <div className='p-[30px] border border-s border-[#7FAA84] rounded-[5px] flex flex-col gap-[15px] tb:gap-[30px]'>
 <div className='flex flex-col tb:flex-row items-start gap-[10px] tb:items-center justify-between'>
-<h3 className='text-[24px] font-bold'>Замовлення №1003</h3>
+<h3 className='text-[24px] font-bold'>Замовлення №{numberOrder}</h3>
 <div className='flex items-center gap-[41px] tb:gap-[15px]'>
             <h3 className='text-[16px] font-medium tracking-[0.32px]'>05.05.2022</h3>
             <h3 className='text-[16px] font-medium tracking-[0.32px]'>15:38</h3>

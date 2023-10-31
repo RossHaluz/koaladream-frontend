@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://koaladream.onrender.com';
+// http://localhost:8001
+// https://koaladream.onrender.com
+axios.defaults.baseURL = 'http://localhost:8001';
 
 export const createNewOrder = createAsyncThunk('api/createNewOrder', async(params, {rejectWithValue}) => {
     try {
@@ -37,5 +39,14 @@ export const getOrder = createAsyncThunk('api/getOrder', async(orderId, {rejectW
         return data
     } catch (error) {
         return rejectWithValue(error.message);
+    }
+})
+
+export const getOrdersUser = createAsyncThunk('api/getOrdersUser', async(__, {rejectWithValue}) => {
+    try {
+        const {data} = await axios.get('/api/order/orders-user');
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.message)
     }
 })

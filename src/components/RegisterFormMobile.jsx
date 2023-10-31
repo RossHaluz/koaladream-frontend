@@ -36,7 +36,8 @@ const RegisterFormMobile = ({setIsOpenLoginPage, setIsOpenRegisterPage}) => {
       };
     
       const onSubmit = async (value, { resetForm }) => {
-      await dispatch(registerUser(value));
+        const {userName, email, password} = value;
+      await dispatch(registerUser({userName, email, password}));
       await navigate('acount')
       setIsOpenRegisterPage(false);
       setIsOpenLoginPage(false);

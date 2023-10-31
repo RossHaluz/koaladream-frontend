@@ -6,17 +6,9 @@ const dispatch = useDispatch();
 
   const handleChangeOption =  (e) => {
     const {value} = e.target;
-    setSelectOption(value);
-   const priceOption = parseOptions.flatMap(item => item.options.find(item => item.name === value));
-    setCurrentPrice(() => {
-      if(priceOption[0]?.price){
-      return  priceOption[0]?.price
-      }else{
-        return currentPrice;
-      }
-    });
-    setCountItem(1)
-    dispatch(setCount(1))
+    setSelectOption(value)
+    setCountItem(1);
+    dispatch(setCount(1));
   }
 
   return (
@@ -27,7 +19,7 @@ const dispatch = useDispatch();
         <div>
         <select onChange={handleChangeOption} className={`bg-[#EAF2EB] tb:bg-transparent py-[10px] px-[15px] tb:border tb:border-solid tb:border-[#7FAA84] rounded-[5px] w-full tb:w-[225px] outline-none`}>
          {options?.map(item => {
-         return <option key={item.optionId} value={item.name}>{item.name}</option>
+         return <option key={item.name} value={item.name}>{item.name}</option>
          })}
           </select>
         </div>

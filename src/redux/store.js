@@ -19,6 +19,7 @@ import { filterRuducer } from './filter/slice';
 import { optionsReduser } from './options/slice';
 import { filterAdminReducer } from './filtersAdmin/slice';
 import { orderReducer } from './order/slice';
+import { reviewReducer } from './reviews/slice';
 
 const persistConfig = {
   key: 'userDetails',
@@ -43,7 +44,8 @@ export const store = configureStore({
     filter: filterRuducer,
     option: optionsReduser,
     filterAdmin: filterAdminReducer,
-    order: persistReducer(persistOrder, orderReducer)
+    order: persistReducer(persistOrder, orderReducer),
+    review: reviewReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

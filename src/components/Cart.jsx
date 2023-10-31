@@ -21,7 +21,7 @@ const removeItem = (itemId) => {
 
 <div className=''>
   <ul className="flex flex-col gap-[10px]">
-    {items?.map(({ image, title, price, oldPrice, article, id, count }) => {
+    {items?.map(({ image, title, price, oldPrice, article, id, count = 1 }) => {
       return (
         <li className="bg-[#EAF2EB] overflow-hidden rounded-[5px]">
              <div className="flex items-center justify-between">
@@ -80,7 +80,7 @@ const removeItem = (itemId) => {
 <NavLink to='/' className='text-[16px] font-bold underline tracking-[0.32p]'>Продовжити покупки</NavLink>
 <NavLink to='/order' className='px-[25.5px] py-[10px] bg-[#7FAA84] rounded-[5px] text-[#fff] text-[16px] font-semibold tracking-[ 0.32px]'>Оформити замовлення</NavLink>
 </div> </>: <div className="flex flex-col gap-[15px] justify-center">
-<h3 className="text-[18px] font-bold tracking-[0.24px] text-center">Корзина пуста :(</h3>
+<h3 className="text-[18px] font-bold tracking-[0.24px]">Корзина пуста :(</h3>
 <NavLink to='/' className='px-[25.5px] py-[10px] bg-[#7FAA84] rounded-[5px] text-[#fff] text-[16px] font-semibold tracking-[ 0.32px] w-[238px] mx-auto flex items-center justify-center'>Перейти в магазин</NavLink>
 </div>}
   </div>

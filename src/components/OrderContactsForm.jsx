@@ -8,6 +8,7 @@ import { createUserContactDetails } from "redux/auth/slice";
 import { selectUser, selectUserContactDetails } from "redux/auth/selectors";
 import { registerUser } from "redux/auth/operetions";
 import OrderFormTitle from "./OrderFormTitle";
+import OrderContactsFormLogin from "./OrderContactsFormLogin";
 
 const validationSchema = Yup.object({
   firstName: Yup.string('Type your firstname').required('Firstname is required'),
@@ -29,10 +30,15 @@ const dispatch = useDispatch();
 const user = useSelector(selectUserContactDetails);
 const loginUser = useSelector(selectUser);
 const [isOpen, setIsOpen] = useState(false);
+const [isNewUser, setIsNewUser] = useState(true);
+const [isRegularCustomer, setIsRegularCustomer] = useState(false);
+const userName = user?.userName?.split(' ');
+const firstName = userName ? userName[0] : '';
+const lastName = userName ? userName[1] : '';
 
   const initialValues = {
-    firstName: user?.firstName  ? user?.firstName : '',
-    lastName: user?.lastName ? user?.lastName : '',
+    firstName: firstName  ? firstName : '',
+    lastName: lastName ? lastName : '',
     phone: user?.phone || loginUser?.phone ? user?.phone || loginUser?.phone : '', 
     email: loginUser?.email ? loginUser?.email : '',
     password: loginUser?.password ? loginUser?.password : '',
@@ -48,6 +54,7 @@ const [isOpen, setIsOpen] = useState(false);
     }else{
       dispatch(createUserContactDetails({firstName, lastName, phone, email}));
     }
+
     resetForm()
   }
 
@@ -55,13 +62,14 @@ const [isOpen, setIsOpen] = useState(false);
     <OrderFormTitle setIsOpen={setIsOpen} isOpen={isOpen} number={1} title={'Контактні дані'}/>
 
     {!user ? 
-   <> <OrderContactsFormStatus/>
+   <><OrderContactsFormStatus isNewUser={isNewUser} setIsNewUser={setIsNewUser} isRegularCustomer={isRegularCustomer} setIsRegularCustomer={setIsRegularCustomer}/>
+   
    <Formik
    initialValues={initialValues}
    validationSchema={!checked ? validationSchema : validationSchemaRegister}
    onSubmit={onSubmit}
    >
-     <Form className="flex flex-col gap-[15px] w-full tb:w-[406px]">
+    {isNewUser ?  <Form className="flex flex-col gap-[15px] w-full tb:w-[406px]">
        <Field name='firstName' placeholder='Ім’я' type="text" className='py-[8px] px-[15px] bg-[#EAF2EB] tb:bg-transparent tb:border tb:border-solid tb:border-[#7FAA84] text-[#484848] tb:text-[#484848]/[.50] tb:text-[16px] tb:font-medium leading-[24px] tracking-[0.32px] rounded-[5px]'/>
        <ErrorMessage name="firstName" component='p' />
 
@@ -88,7 +96,7 @@ const [isOpen, setIsOpen] = useState(false);
        </label>
 
        <button type="submit" className="px-[25px] py-[15px] bg-[#7FAA84] rounded-[5px] text-[16px] font-semibold tracking-[0.32px] text-[#fff] flex items-center justify-center w-[220px] tb:w-[155px] mt-[15px] mx-auto">Далі</button>
-     </Form>
+     </Form> : isRegularCustomer && <OrderContactsFormLogin/>}
    </Formik></> : isOpen && <Formik
     initialValues={initialValues}
     validationSchema={!checked ? validationSchema : validationSchemaRegister}

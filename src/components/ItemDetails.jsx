@@ -6,7 +6,7 @@ import ItemDetailsArticle from './ItemDetailsArticle';
 import ItemDetailsPrice from './ItemDetailsPrice';
 import ItemDetailsBtn from './ItemDetailsBtn';
 import ItemDetailsDesc from './ItemDetailsDesc';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { selectIsLoading } from 'redux/items/selectors';
 import { useSelector } from 'react-redux';
 
@@ -14,17 +14,11 @@ const ItemDetails = ({ item }) => {
   const { title, images, status, article, price, oldPrice, options, desc, characteristics, care, _id: id } = item;
   const parseOptions = JSON.parse(options);
   let parseCharacteristics = null;
-  const [currentPrice, setCurrentPrice] = useState(null);
-  const [selectOption,  setSelectOption] = useState(null);
+  const [currentPrice, setCurrentPrice] = useState(parseOptions[0]?.options[0]?.price || null);
+  const [selectOption,  setSelectOption] = useState(parseOptions.map(item => item.options?.map(item => item.name)[0]) || null);
   const isLoading = useSelector(selectIsLoading);
   const [count, setCount] = useState(1);
   const [countItem, setCountItem] = useState(1);
-
-useEffect(() => {
-  setSelectOption(parseOptions.map(item => item.options.map(item => item.name)[0]));
-  setCurrentPrice(parseOptions[0]?.options[0]?.price)
-}, [parseOptions])
-
 
 
  if(characteristics.length > 0){

@@ -30,7 +30,6 @@ const itemSlice = createSlice({
       state.currentPage = action.payload;
     },
     setCount(state, action) {
-      console.log(action.payload);
       state.count = action.payload;
     }
   },

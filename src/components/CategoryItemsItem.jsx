@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 import icons from './img/icons/icons.svg';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { addItemToCart } from 'redux/order/slice';
+
 
 const CategoryItemsItem = ({
   images,
@@ -11,6 +15,17 @@ const CategoryItemsItem = ({
   category,
   id,
 }) => {
+  const dispatch = useDispatch();
+  const image = images[0]
+
+  const handleAddItem = (item) => {
+
+    dispatch(addItemToCart(item))
+    toast.success('Item add to cart', {
+      position: "top-right",
+      autoClose: 5000})
+  }
+
   return (
     <li className="w-full border border-solid border-[#484848]/[.20] rounded-[5px]">
       <Link to={`/${category}/${id}`}>
@@ -42,7 +57,7 @@ const CategoryItemsItem = ({
             </h3>
           </div>
 
-          <button type="button">
+          <button type="button" onClick={() => handleAddItem({ image, title, price, article, oldPrice, id })}>
             <svg className="w-[24px] h-[24px]">
               <use href={`${icons}#icon-bag`}></use>
             </svg>

@@ -1,8 +1,5 @@
-import { useState } from "react"
 
-const OrderContactsFormStatus = () => {
-const [isNewUser, setIsNewUser] = useState(true);
-const [isRegularCustomer, setIsRegularCustomer] = useState(false);
+const OrderContactsFormStatus = ({isNewUser, setIsNewUser, isRegularCustomer, setIsRegularCustomer}) => {
 
 const handleNewUser = () => {
     setIsNewUser(true);
