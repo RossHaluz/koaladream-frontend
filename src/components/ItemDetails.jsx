@@ -26,14 +26,14 @@ const ItemDetails = ({ item }) => {
  }
 
   return <>{!isLoading && <div className='py-[18px] lg:py-[30px]'>
-  <h1 className='sm:hidden tb:block text-[24px] font-bold mb-[30px] w-[688px]'>{selectOption ? `${title} ${selectOption}` : title}</h1>
+  <h1 className='sm:hidden tb:block text-[24px] font-bold mb-[30px] w-[688px]'>{title}</h1>
 
 {/* Product  */}
 <div className='grid grid-cols-1 lg:grid-cols-2 items-start gap-[15px] tb:gap-[30px] mb-[30px]'>
 
 <ItemDetailsSwiper images={images}/>
 
-<h1 className='tb:hidden text-[16px] font-bold tracking-[0.64px]'>{selectOption ? `${title} ${selectOption}` : title}</h1>
+<h1 className='tb:hidden text-[16px] font-bold tracking-[0.64px]'>{title}</h1>
 
 <div>
 <ItemDetailsArticle status={status} article={article}/>

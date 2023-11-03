@@ -22,11 +22,11 @@ const BlogSwiper = ({posts}) => {
           setActiveIndex(3)
           return
         } else if (windowWidth >= 320 && windowWidth <= 768) {
-          setSlidesPerView('auto'); // Например, 2 слайда на мобильном устройстве
+          setSlidesPerView(1.7); // Например, 2 слайда на мобильном устройстве
           return
         } else if (windowWidth >= 768 && windowWidth <= 1280) {
-            setSlidesPerView(3); // Например, 2 слайда на мобильном устройстве
-            setActiveIndex(3)
+            setSlidesPerView(1.7); // Например, 2 слайда на мобильном устройстве
+            setActiveIndex(1)
             return
           } else {
           setSlidesPerView(4); // По умолчанию 4 слайда на большом экране
@@ -54,6 +54,8 @@ const BlogSwiper = ({posts}) => {
   modules={[Navigation, Pagination]}
   roundLengths={true}
   slidesPerView={slidesPerView}
+  spaceBetween={10}
+  centeredSlides={true}
   loop={true}
   navigation = {{
     prevEl: navigationPrevRef.current,
@@ -66,11 +68,11 @@ const BlogSwiper = ({posts}) => {
     },
     1280: {
         spaceBetween: 20,
-        centeredSlides: false
+        centeredSlides: false,
     },
     1440: {
         spaceBetween: 20,
-        centeredSlides: false
+        centeredSlides: false,
     }
    }}
   >
